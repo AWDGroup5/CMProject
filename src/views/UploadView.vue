@@ -1,32 +1,32 @@
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+  import { ref } from "vue";
+  import { useRouter } from "vue-router";
 
-let emit = defineEmits(["add-post"])
-defineProps({
-  posts: {
-    type: Array,
-    default: () => [],
-  },
-})
+  let emit = defineEmits(["add-post"])
+  defineProps({
+    posts: {
+      type: Array,
+      default: () => [],
+    },
+  })
 
-const slug = ref("");
-const title = ref("");
-const description = ref("");
-const content = ref("");
-const tags = ref("");
+  const slug = ref("");
+  const title = ref("");
+  const description = ref("");
+  const content = ref("");
+  const tags = ref("");
 
-const router = useRouter();
+  const router = useRouter();
 
-function addPost() {
-  emit("add-post", slug.value, title.value, description.value, content.value, tags.value);
+  function addPost() {
+    emit("add-post", slug.value, title.value, description.value, content.value, tags.value);
 
-  router.push("/");
-}
+    router.push("/");
+  }
 </script>
 
 <template>
-<div style="margin: auto; text-align: center;"><h2>Add Post</h2></div>
+  <div style="margin: auto; text-align: center;"><h2>Add Post</h2></div>
 
   <el-form ref="form" :model="form" label-width="120px">
     <el-form-item label="Slug">

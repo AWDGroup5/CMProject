@@ -3,67 +3,67 @@
       <div class="logo">
         <img class="img-style" src="@/assets/heart-attack.png" alt="heart">
       </div>
-      <b-form @submit="onSubmit">
-        <b-form-group
+      <el-form @submit="onSubmit">
+        <el-form-group
           id="name-input"
           label="Name"
           label-for="name"
         >
-          <b-form-input
+          <el-form-input
             id="name"
             v-model="form.name"
             type="text"
             placeholder="Enter Name"
             required
             class="input-fields"
-          ></b-form-input>
-        </b-form-group>
+          ></el-form-input>
+        </el-form-group>
 
-        <b-form-group
+        <el-form-group
           class="mt-3"
           id="email-input"
           label="Email"
           label-for="email"
         >
-          <b-form-input
+          <el-form-input
             id="email"
             v-model="form.email"
             type="email"
             placeholder="Enter email"
             required
             class="input-fields"
-          ></b-form-input>
-        </b-form-group>
+          ></el-form-input>
+        </el-form-group>
   
-        <b-form-group
+        <el-form-group
           class="mt-3"
           id="password-input"
           label="Password"
           label-for="password"
         >
-          <b-form-input
+          <el-form-input
             id="password"
             v-model="form.password"
             type="password"
             placeholder="Enter password"
             required
             class="input-fields"
-          ></b-form-input>
-        </b-form-group>
+          ></el-form-input>
+        </el-form-group>
   
         <!-- button -->
         <div class="mt-4 text-center">
-          <b-button class="btn-style" type="submit" variant="primary">Sign Up</b-button>
+          <el-button class="btn-style" type="submit" variant="primary">Sign Up</el-button>
         </div>
         <div class="mt-4">
           <hr/>
         </div>
         <div class="mt-3 text-center">
-          <b-form-text class="mr-0">
+          <el-form-text class="mr-0">
             Already a user? <span @click="goToLogin" class="hand link">LOGIN</span>
-          </b-form-text>
+          </el-form-text>
         </div>
-      </b-form>
+      </el-form>
     </div>
   </template>
   

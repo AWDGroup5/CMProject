@@ -5,11 +5,11 @@
   </div>
 </template>
 
-<script>
+<script setup>
 // @ is an alias to /src
 import Login from '@/components/SignIn.vue'
 import SignUp from '@/components/SignUp.vue'
-export default {
+const login = ({
   name: 'LoginScreen',
   components: {
     Login,
@@ -25,8 +25,9 @@ export default {
       this.showLogin = val
     }
   }
-}
+})
 </script>
+
 <style scoped>
 .main-div {
   width: auto;

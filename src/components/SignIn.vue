@@ -3,61 +3,61 @@
     <div class="logo">
       <img class="img-style" src="@/assets/heart-attack.png" alt="heart">
     </div>
-    <b-form @submit="onSubmit">
-      <b-form-group
+    <el-form @submit="onSubmit">
+      <el-form-group
         id="email-input"
         label="Email"
         label-for="email"
       >
-        <b-form-input
+        <el-form-input
           id="email"
           v-model="form.email"
           type="email"
           placeholder="Enter email"
           required
           class="input-fields"
-        ></b-form-input>
-      </b-form-group>
+        ></el-form-input>
+      </el-form-group>
 
-      <b-form-group
+      <el-form-group
        v-if="!forgotPasswordScreen"
         class="mt-3"
         id="password-input"
         label="Password"
         label-for="password"
       >
-        <b-form-input
+        <el-form-input
           id="password"
           v-model="form.password"
           type="password"
           placeholder="Enter password"
           required
           class="input-fields"
-        ></b-form-input>
+        ></el-form-input>
         <div class="text-end">
-          <b-form-text>
+          <el-form-text>
           <span @click="showForgotPassword(true)" class="hand link">Forgot Password?</span>
-          </b-form-text>
+          </el-form-text>
         </div>
-      </b-form-group>
+      </el-form-group>
 
       <!-- button -->
       <div class="mt-4 text-center">
-        <b-button v-if="forgotPasswordScreen" class="btn-style" type="submit" variant="primary">Submit</b-button>
-        <b-button v-else class="btn-style" type="submit" variant="primary">Login</b-button>
+        <el-button v-if="forgotPasswordScreen" class="btn-style" type="submit" variant="primary">Submit</el-button>
+        <el-button v-else class="btn-style" type="submit" variant="primary">Login</el-button>
       </div>
       <div class="mt-4">
         <hr/>
       </div>
       <div class="mt-3 text-center">
-        <b-form-text v-if="forgotPasswordScreen" class="mr-0">
+        <el-form-text v-if="forgotPasswordScreen" class="mr-0">
           <span @click="showForgotPassword(false)" class="hand link"> <img class="back-img" src="@/assets/back.png" alt="back"> Back to Login</span>
-        </b-form-text>
-        <b-form-text v-else class="mr-0">
+        </el-form-text>
+        <el-form-text v-else class="mr-0">
           Need an account? <span @click="goToLogin" class="hand link">SIGN UP</span>
-        </b-form-text>
+        </el-form-text>
       </div>
-    </b-form>
+    </el-form>
   </div>
 </template>
 
