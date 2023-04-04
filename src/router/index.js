@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import SignUp from '../components/SignUp.vue'
 import SignIn from '../components/SignIn.vue'
-import Upload from '../components/UploadView.vue'
+//import Upload from '../components/Upload.vue'
 import Search from '../components/Search.vue'
 import LoginScreen from '../views/LoginScreen.vue'
 import UploadView from '../views/UploadView.vue'
@@ -32,12 +32,12 @@ const router = createRouter({
       path: '/signup',
       name: 'Signup',
       component: SignUp
-    },
+    },/*
     {
       path: '/upload',
       name: 'Upload',
       component: Upload
-    },
+    },*/
     {
       path: '/post',
       name: 'Post',
