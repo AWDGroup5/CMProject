@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 </script>
 
@@ -17,7 +17,7 @@ import HelloWorld from './components/HelloWorld.vue'
     </div>
   </header>
 
-  <useRouter />
+  <RouterView />
 </template>
 
 <style scoped>
