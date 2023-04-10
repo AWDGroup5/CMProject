@@ -26,6 +26,7 @@ h3 {
 
 .greetings h1,
 .greetings h3 {
+  font-style: italic;
   text-align: center;
 }
 
