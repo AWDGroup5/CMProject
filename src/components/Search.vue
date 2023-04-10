@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 // I used the axios to search data
 import axios from 'axios';
 
@@ -30,11 +30,9 @@ export default { name: 'Search', data() {
 
 <template>
     <div>
-      <h1>General Information Query</h1>
       <div>
-        <label for="query">Query:</label>
-        <input type="text" id="query" v-model="query">
-        <button @click="search" :disabled="isLoading">{{ isLoading ? 'Loading...' : 'Search' }}</button>
+        <input type="text" id="query" placeholder="Search Cardiomyopathy Project" v-model="query">
+        <button @click="search" :disabled="isLoading">{{ isLoading ? 'Searching...' : 'Search' }}</button>
       </div>
       <div v-if="results.length > 0">
         <h2>Results:</h2>
@@ -63,11 +61,6 @@ export default { name: 'Search', data() {
     margin: 0 auto;
     padding: 20px;
     box-sizing: border-box;
-  }
-  
-  h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
   }
   
   label {

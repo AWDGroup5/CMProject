@@ -1,10 +1,10 @@
 <script setup lang="ts">
- import Upload from '../components/Upload.vue'
+ import Search from '../components/Search.vue'
 </script>
 
 <template>
   <div class="about">
-    <Upload />
+    <Search />
   </div>
 </template>
 
