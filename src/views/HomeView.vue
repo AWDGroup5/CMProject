@@ -1,9 +1,7 @@
-<script setup lang="ts">
-  import RSS from './RssFeedView.vue'
+<script setup>
 </script>
 
 <template>
   <main>
-    <RSS />
   </main>
 </template>

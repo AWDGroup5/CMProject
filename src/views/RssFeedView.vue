@@ -41,8 +41,7 @@
     }
     
     try {
-      const data = await fetch('https://flannel-glade.glitch.me/?' + new URLSearchParams({
-        rss: 'http://www.espn.com/blog/feed?blog=' + selected.value
+      const data = await fetch('https://rss.app/feeds/1mDqPNunGm48692G.xml'
       }).toString())
       const json = await data.json();
       const rss = json.rss.channel.item;
