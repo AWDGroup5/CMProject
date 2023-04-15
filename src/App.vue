@@ -5,6 +5,11 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
+
+    <nav>
+      <RouterLink to="/login">Sign In / Sign Up</RouterLink>
+    </nav>
+
     <img alt="Vue logo" class="logo" src="@/assets/heart-attack.png" width="125" height="125" />
 
     <div class="wrapper">
@@ -14,7 +19,7 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/search">Search</RouterLink>
-        <RouterLink to="/upload">Upload</RouterLink>
+        <RouterLink to="/upload">Upload Data</RouterLink>
       </nav>
     </div>
   </header>
