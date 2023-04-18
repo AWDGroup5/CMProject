@@ -2,7 +2,7 @@
 <div class="content">
       <div class="news-feed">
         <h2>Latest News on Cardiomyopathy</h2>
-        <rss-feed url="https://rss.app/feeds/1mDqPNunGm48692G.xml"></rss-feed>
+        <rss-feed></rss-feed>
       </div>
 </div>
 <div class="posts-feed">
@@ -16,8 +16,15 @@
 </template>
 <style>
 .news-feed, .posts-feed {
-  background-color: #f8f8f8;
+  background-color: transparent;
   padding: 16px;
 border-radius: 8px;
+align-self: center;
+}
+.graph-data {
+  background-color: transparent;
+  padding: 16px;
+  border-radius: 8px;
+  align-self: center;
 }
 </style>
