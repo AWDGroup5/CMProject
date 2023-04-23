@@ -1,36 +1,43 @@
-<template>
+<!--<template>
   <div class="login-div">
-    <el-form @submit="onSubmit">
+    <el-form label-width="50px" @submit.prevent>
+      <h2>Login</h2>
+      
       <el-form-group
         id="email-input"
         label="Email"
         label-for="email"
       >
-        <el-form-input
-          id="email"
-          v-model="form.email"
-          type="email"
-          placeholder="Enter email"
-          required
-          class="input-fields"
-        ></el-form-input>
+        <el-form-item label="Email">
+          <el-input
+            type="email"
+            placeholder="email"
+            required
+            autocomplete="off"
+            v-model="email"
+          ></el-input>
+        </el-form-item>
       </el-form-group>
 
       <el-form-group
-       v-if="!forgotPasswordScreen"
+        v-if="!forgotPasswordScreen"
         class="mt-3"
         id="password-input"
         label="Password"
         label-for="password"
       >
-        <el-form-input
-          id="password"
-          v-model="form.password"
-          type="password"
-          placeholder="Enter password"
-          required
-          class="input-fields"
-        ></el-form-input>
+      
+        <el-form-item label="Password">
+          <el-input
+            type="password"
+            placeholder="password"
+            required
+            autocomplete="off"
+            show-password
+            v-model="password"
+          ></el-input>
+        </el-form-item>
+
         <div class="text-end">
           <el-form-text>
           <span @click="showForgotPassword(true)" class="hand link">Forgot Password?</span>
@@ -38,7 +45,6 @@
         </div>
       </el-form-group>
 
-      <!-- button -->
       <div class="mt-4 text-center">
         <el-button v-if="forgotPasswordScreen" class="btn-style" type="submit" variant="primary">Submit</el-button>
         <el-button v-else class="btn-style" type="submit" variant="primary">Login</el-button>
@@ -59,6 +65,12 @@
 </template>
 
 <script>
+import { ref } from "vue";
+import { firebaseAuthentication, signInWithEmailAndPassword } from "@/firebase/database";
+import { useRouter } from "vue-router";
+
+
+
 export default {
   name: 'SignIn',
   data() {
@@ -132,3 +144,81 @@ export default {
   filter:grayscale(#ff0059)
 }
 </style>
+-->
+<script setup>
+import { ref } from "vue";
+import { firebaseAuthentication, signInWithEmailAndPassword } from "@/firebase/database";
+import { useRouter } from "vue-router";
+
+defineEmits(["login-clicked"])
+
+const email = ref("");
+const password = ref("");
+const errorFirebase = ref(null);
+
+const router = useRouter();
+
+function login() {
+  const info = {
+    email: email.value,
+    password: password.value,
+  };
+
+  signInWithEmailAndPassword( firebaseAuthentication, info.email, info.password)
+    .then(
+      () => {
+        // const user = userCredential.user;
+        router.push("/");
+        // console.log("user = ", user)
+        // router.push({ name: 'PostList', params: { user: user} });
+      },
+      (error) => {
+        errorFirebase.value = error.message;
+      }
+    );
+}
+</script>
+
+<template>
+  <el-form label-width="50px" @submit.prevent>
+    <h2>Login</h2>
+
+    <div v-if="errorFirebase">
+      <el-button plain type="danger" disabled icon="el-icon-error">
+        {{ errorFirebase }}
+      </el-button>
+    </div>
+
+    <el-form-item label="Email">
+      <el-input
+        type="email"
+        placeholder="email"
+        required
+        autocomplete="off"
+        v-model="email"
+      ></el-input>
+    </el-form-item>
+
+    <el-form-item label="Password">
+      <el-input
+        type="password"
+        placeholder="password"
+        required
+        autocomplete="off"
+        show-password
+        v-model="password"
+      ></el-input>
+    </el-form-item>
+
+    <el-form-item>
+      <el-button type="success" style="margin: auto" @click="login">
+        Login
+      </el-button>
+      Don't have an account? 
+
+    </el-form-item>
+  </el-form>
+</template>
+
+<style></style>
+

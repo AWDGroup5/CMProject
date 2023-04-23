@@ -14,7 +14,7 @@ import HelloWorld from './components/HelloWorld.vue'
         </div>
 
         <nav class="Header-login">
-          <RouterLink to="/login">Sign In</RouterLink>
+          <RouterLink to="/login">Login</RouterLink>
         </nav>
 
       </div>
@@ -28,10 +28,10 @@ import HelloWorld from './components/HelloWorld.vue'
 
           <nav>
             <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/about">News</RouterLink>
+            <RouterLink to="/news">News</RouterLink>
             <RouterLink to="/search">Search</RouterLink>
-            <RouterLink to="/upload">Message Board</RouterLink>
-            <RouterLink to="/upload">Data</RouterLink>
+            <RouterLink to="/message-board">Message Board</RouterLink>
+            <RouterLink to="/data">Data</RouterLink>
           </nav>
         </div>
 
@@ -67,8 +67,7 @@ import HelloWorld from './components/HelloWorld.vue'
   overflow:hidden;
   background-image: url(./assets/heart-attack.png);
   background-repeat:no-repeat;
-  background-position:0 -190px;
-  background-size:370px 270px;
+  background-size:90px 80px;
   text-indent:-9999px
 }
 
