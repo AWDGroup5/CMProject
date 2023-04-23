@@ -1,8 +1,5 @@
 <template>
     <div class="login-div">
-      <div class="logo">
-        <img class="img-style" src="@/assets/heart-attack.png" alt="heart">
-      </div>
       <el-form @submit="onSubmit">
         <el-form-group
           id="name-input"
@@ -131,17 +128,6 @@
   }
   .link:hover {
     color: #ff5c5b;
-  }
-  .logo {
-    text-align: center;
-    margin: 10px;
-  }
-  .img-style {
-    width: 50px;
-  }
-  .back-img {
-    width: 11px;
-    filter:grayscale(#ff0059)
   }
   </style>
   
