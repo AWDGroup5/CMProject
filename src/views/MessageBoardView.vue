@@ -51,9 +51,9 @@
 
     <el-form-item>
       <el-button type="success" @click="addPost">Create Post</el-button>
-      <router-link :to="{ name: 'PostList' }"
-        ><el-button>Cancel</el-button></router-link
-      >
+      <RouterLink :to="{ name: 'PostList' }"
+        ><el-button>Cancel</el-button>
+      </RouterLink>
     </el-form-item>
   </el-form>
 </template>
