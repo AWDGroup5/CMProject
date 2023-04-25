@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import sidePanelWidth from './menu-icon.js'
 </script>
 
 <template>
@@ -8,11 +9,17 @@ import HelloWorld from './components/HelloWorld.vue'
 
     <div class="Layout-header">
       <div class="Header-homepage">
-
-        <div class="Header-menu">
-          <label>Placeholder</label>
-        </div>
-
+        <button class="openbtn" @click="openSidePanel">☰ Menu</button>
+    <div id="mySidepanel" class="sidepanel" :style="{ width: sidePanelWidth + 'px' }">
+      <a href="javascript:void(0)" class="closebtn" @click="closeSidePanel"></a>
+      <nav>
+        <li><RouterLink to="/">Home</RouterLink></li>
+        <li><RouterLink to="/news">News</RouterLink></li>
+        <li><RouterLink to="/search">Search</RouterLink></li>
+        <li><RouterLink to="/message-board">Message Board</RouterLink></li>
+        <li><RouterLink to="/data">Data</RouterLink></li>
+      </nav>
+    </div>
         <nav class="Header-login">
           <RouterLink to="/login">Login</RouterLink>
         </nav>
@@ -45,8 +52,7 @@ import HelloWorld from './components/HelloWorld.vue'
     <div class="NavBar">
 
     </div>
-
-  </div>
+  </div>  
 </template>
 
 <style scoped>
@@ -69,6 +75,58 @@ import HelloWorld from './components/HelloWorld.vue'
   background-repeat:no-repeat;
   background-size:90px 80px;
   text-indent:-9999px
+}
+
+.sidepanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+  z-index: 999;
+  overflow-x: hidden;
+  padding-top: 60px;
+}
+
+.sidepanel a {
+  padding: 10px;
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidepanel a:hover {
+  background-color: transparent;
+}
+
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 999;
+}
+
+@media only screen and (min-width: 768px) {
+  .sidepanel {
+    width: 250px;
+  }
+
+  .openbtn {
+    display: none;
+  }
 }
 
 nav {
@@ -94,14 +152,6 @@ nav {
   min-height: 55px;
 }
 
-.Header-menu {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 55px;
-  height: 55px;
-  text-align: center;
-}
 
 .Header-login {
   position: absolute;
