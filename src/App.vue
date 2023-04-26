@@ -37,11 +37,11 @@ const toggleSidebar = () => {
     <div class="NavBar"></div>
     <div class="Sidebar" v-show="sidebarOpen" :class="{ show: sidebarOpen }">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/news">News</RouterLink>
-        <RouterLink to="/search">Search</RouterLink>
-        <RouterLink to="/message-board">Message Board</RouterLink>
-        <RouterLink to="/data">Data</RouterLink>
+        <li><RouterLink to="/">Home</RouterLink></li>
+        <li><RouterLink to="/news">News</RouterLink></li>
+        <li><RouterLink to="/search">Search</RouterLink></li>
+        <li><RouterLink to="/message-board">Message Board</RouterLink></li>
+        <li><RouterLink to="/data">Data</RouterLink></li>
       </nav>
     </div>
   </div>
