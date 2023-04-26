@@ -5,7 +5,7 @@ import MessageBoard from '../Views/MessageBoardView.vue'
 import PostList from "../components/PostList.vue";
 import Login from "@/components/SignIn.vue";
 import Register from "@/components/SignUp.vue";
-import Data from "@/components/DataUpload.vue";
+import Data from "@/views/DataView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,7 +57,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.name
+  document.title = "Cardiomyopathy Project | " + to.name
 
   next()
 

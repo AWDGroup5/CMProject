@@ -28,6 +28,8 @@
 <template>
   <div style="margin: auto; text-align: center;"><h2>Add Post</h2></div>
 
+  <el-divider />
+
   <el-form ref="form" :model="form" label-width="120px">
     <el-form-item label="Slug">
       <el-input v-model="slug"></el-input>
@@ -48,6 +50,8 @@
     <el-form-item label="Tags">
       <el-input v-model="tags"></el-input>
     </el-form-item>
+        
+    <el-divider />
 
     <el-form-item>
       <el-button type="success" @click="addPost">Create Post</el-button>

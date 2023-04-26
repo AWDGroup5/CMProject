@@ -183,6 +183,8 @@ function login() {
   <el-form label-width="50px" @submit.prevent>
     <h2>Login</h2>
 
+    <el-divider />
+
     <div v-if="errorFirebase">
       <el-button plain type="danger" disabled icon="el-icon-error">
         {{ errorFirebase }}
@@ -209,6 +211,8 @@ function login() {
         v-model="password"
       ></el-input>
     </el-form-item>
+    
+    <el-divider />
 
     <el-form-item>
       <el-button type="success" style="margin: auto" @click="login">

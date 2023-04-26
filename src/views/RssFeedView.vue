@@ -41,8 +41,8 @@
     }
     
     try {
-      const data = await fetch('https://rss.app/feeds/1mDqPNunGm48692G.xml'
-      }).toString())
+      const data = fetch('https://rss.app/feeds/1mDqPNunGm48692G.xml'
+      ).toString()
       const json = await data.json();
       const rss = json.rss.channel.item;
       items.value = rss.map((story) => {

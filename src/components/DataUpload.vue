@@ -113,6 +113,8 @@ import { useRouter } from "vue-router";
             <h2>Add Data</h2>
         </div>
         
+        <el-divider />
+        
         <div style="margin: auto; text-align: left" >
             <p>Heart Conditions</p>
         </div>
@@ -267,36 +269,44 @@ import { useRouter } from "vue-router";
                 v-model="scar"
             />
         </el-form-item>
+
+        <el-divider />
         
         <div style="margin: auto; text-align: left" >
             <p>Patient Information</p>
         </div>
 
-        <el-form-item label="Age at MRI">
-            <el-input 
-                type="number" 
-                v-model="age"
-                required
-                style="width: 50px;"
-            >
-            </el-input>
-        </el-form-item>
+        <el-row>
+            <el-col :span="12">
+                <el-form-item label="Age at MRI">
+                    <el-input 
+                        type="number" 
+                        v-model="age"
+                        required
+                        style="width: 50px;"
+                    >
+                    </el-input>
+                </el-form-item>
+            </el-col>
 
-        <el-form-item label="Gender">
-            <el-select
-                v-model="gender"
-                placeholder="Select a gender"
-                required
-                style="width: 260px"
-            >
-            <el-option
-                v-for="item in genders"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-            />
-            </el-select>
-        </el-form-item>
+            <el-col :span="12">
+                <el-form-item label="Gender">
+                    <el-select
+                        v-model="gender"
+                        placeholder="Select a gender"
+                        required
+                        style="width: 260px"
+                    >
+                    <el-option
+                        v-for="item in genders"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                    />
+                    </el-select>
+                </el-form-item>
+            </el-col>
+        </el-row>
 
         <el-form-item label="Diabetes">
             <el-select
@@ -349,6 +359,8 @@ import { useRouter } from "vue-router";
                 </el-form-item>
             </el-col>
         </el-row>
+
+        <el-divider />
 
         <el-form-item>
             <el-button type="success" @click="addData">Add Data</el-button>

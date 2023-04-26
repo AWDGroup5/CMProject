@@ -196,6 +196,8 @@ function register() {
   <el-form label-width="150px" class="register" @submit.prever>
     <h2>Register</h2>
 
+    <el-divider />
+
     <div v-if="errorRegistration">
       <el-button plain type="danger" disabled icon="el-icon-error">
         {{ errorRegistration }}
@@ -263,6 +265,8 @@ function register() {
         v-model="confirmPassword"
       ></el-input>
     </el-form-item>
+
+    <el-divider />
 
     <el-form-item>
       <el-button
