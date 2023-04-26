@@ -71,7 +71,7 @@ const toggleSidebar = () => {
 
 nav {
   width: 100%;
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
   margin-top: 2rem;
 }
@@ -118,7 +118,7 @@ nav {
   top: 0;
   width: 250px;
   height: 100%;
-  background-color: white;
+  background-color: rgb(242, 240, 240);
   overflow-y: auto;
   padding: 1rem;
 }
