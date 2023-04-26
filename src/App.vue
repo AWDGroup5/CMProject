@@ -98,8 +98,9 @@ nav {
   left: 0;
   width: 55px;
   height: 55px;
-  text-align: center;
+  text-align: right;
   cursor: pointer;
+  color: red;
 }
 
 .Header-login {
