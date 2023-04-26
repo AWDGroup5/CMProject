@@ -57,7 +57,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = "Cardiomyopathy Project | " + to.name
+  document.title =  to.name + " | Cardiomyopathy Project"
 
   next()
 

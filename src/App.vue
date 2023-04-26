@@ -1,62 +1,53 @@
 <script setup>
+import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import sidePanelWidth from './menu-icon.js'
+
+const sidebarOpen = ref(false)
+
+const toggleSidebar = () => {
+  sidebarOpen.value = !sidebarOpen.value
+}
 </script>
 
 <template>
   <div class="Layout-app">
-
     <div class="Layout-header">
       <div class="Header-homepage">
-        <button class="openbtn" @click="openSidePanel">☰ Menu</button>
-    <div id="mySidepanel" class="sidepanel" :style="{ width: sidePanelWidth + 'px' }">
-      <a href="javascript:void(0)" class="closebtn" @click="closeSidePanel"></a>
-      <nav>
-        <li><RouterLink to="/">Home</RouterLink></li>
-        <li><RouterLink to="/news">News</RouterLink></li>
-        <li><RouterLink to="/search">Search</RouterLink></li>
-        <li><RouterLink to="/message-board">Message Board</RouterLink></li>
-        <li><RouterLink to="/data">Data</RouterLink></li>
-      </nav>
-    </div>
+        <div class="Header-menu" @click="toggleSidebar">
+          <label v-if="!sidebarOpen">Menu</label>
+          <label v-else>X</label>
+        </div>
         <nav class="Header-login">
           <RouterLink to="/login">Login</RouterLink>
         </nav>
-
       </div>
     </div>
-
     <div class="Layout-main">
       <div class="TitleCard">
         <div class="wrapper">
           <img alt="CMP logo" class="logo" src="@/assets/heart-attack.png" width="125" height="125" />
           <HelloWorld msg="Cardiomyopathy Project" />
-
-          <nav>
-            <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/news">News</RouterLink>
-            <RouterLink to="/search">Search</RouterLink>
-            <RouterLink to="/message-board">Message Board</RouterLink>
-            <RouterLink to="/data">Data</RouterLink>
-          </nav>
         </div>
-
       </div>
-
       <div class="ContentCard">
         <RouterView />
       </div>
     </div>
-
-    <div class="NavBar">
-
+    <div class="NavBar"></div>
+    <div class="Sidebar" v-show="sidebarOpen" :class="{ show: sidebarOpen }">
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/news">News</RouterLink>
+        <RouterLink to="/search">Search</RouterLink>
+        <RouterLink to="/message-board">Message Board</RouterLink>
+        <RouterLink to="/data">Data</RouterLink>
+      </nav>
     </div>
-  </div>  
+  </div>
 </template>
 
 <style scoped>
-
 .Layout-main {
   box-sizing: inherit;
   width: 1000px;
@@ -67,76 +58,25 @@ import sidePanelWidth from './menu-icon.js'
 }
 
 .logo {
-  display:block;
-  width:90px;
-  height:80px;
-  overflow:hidden;
-  background-image: url(./assets/heart-attack.png);
-  background-repeat:no-repeat;
-  background-size:90px 80px;
-  text-indent:-9999px
-}
-
-.sidepanel {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: transparent;
-  transition: all 0.3s ease-in-out;
-  z-index: 999;
-  overflow-x: hidden;
-  padding-top: 60px;
-}
-
-.sidepanel a {
-  padding: 10px;
-  text-decoration: none;
-  color: #fff;
   display: block;
-  transition: 0.3s;
-}
-
-.sidepanel a:hover {
-  background-color: transparent;
-}
-
-.closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-.openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 999;
-}
-
-@media only screen and (min-width: 768px) {
-  .sidepanel {
-    width: 250px;
-  }
-
-  .openbtn {
-    display: none;
-  }
+  width: 90px;
+  height: 80px;
+  overflow: hidden;
+  background-image: url(./assets/heart-attack.png);
+  background-repeat: no-repeat;
+  background-size: 90px 80px;
+  text-indent: -9999px;
 }
 
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 13px;
   text-align: center;
   margin-top: 2rem;
 }
 
-.Layout-header, .Layout-main {
+.Layout-header,
+.Layout-main {
   position: relative;
   width: 100%;
   margin: 0 auto;
@@ -146,12 +86,21 @@ nav {
   z-index: 70;
 }
 
-.Header-homepage {    
+.Header-homepage {
   position: relative;
   width: 100%;
   min-height: 55px;
 }
 
+.Header-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  cursor: pointer;
+}
 
 .Header-login {
   position: absolute;
@@ -160,6 +109,17 @@ nav {
   width: 55px;
   height: 55px;
   text-align: center;
+}
+
+.Sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: rgb(242, 240, 240);
+  overflow-y: auto;
+  padding: 1rem;
 }
 
 nav a.router-link-exact-active {
