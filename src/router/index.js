@@ -53,6 +53,11 @@ const router = createRouter({
       component: Login
     },
     {
+      path: '/logout',
+      name: 'Logout',
+      component: Logout
+    },
+    {
       path: "/register",
       name: "Register",
       component: Register,
@@ -61,6 +66,11 @@ const router = createRouter({
       path: "/data",
       name: "Data",
       component: Data,
+    },
+    {
+      path: "/profile",
+      name: "Profile",
+      component: Profile,
     }
   ]
 })

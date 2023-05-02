@@ -42,6 +42,7 @@ const toggleSidebar = () => {
         <RouterLink to="/search">Search</RouterLink>
         <RouterLink to="/message-board">Message Board</RouterLink>
         <RouterLink to="/data">Data</RouterLink>
+        <RouterLink to="/logout">Logout</RouterLink>
       </nav>
     </div>
   </div>
