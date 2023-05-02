@@ -1,12 +1,14 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import Search from'../views/SearchView.vue';
 import MessageBoard from '../Views/MessageBoardView.vue';
-import PostList from "../components/PostList.vue";
-import SinglePost from "../components/SinglePost.vue";
-import Login from "@/components/SignIn.vue";
-import Register from "@/components/SignUp.vue";
-import Data from "@/views/DataView.vue";
+import PostList from '../components/PostList.vue';
+import SinglePost from '../components/SinglePost.vue';
+import Login from '../views/LoginScreen.vue';
+import Logout from '../views/LogoutView.vue';
+import Register from '../views/LogoutView.vue';
+import Data from '../views/DataView.vue';
+import Profile from '../views/ProfileView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

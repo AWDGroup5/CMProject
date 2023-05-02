@@ -41,55 +41,13 @@ const login = ({
 -->
 
 <script setup>
-import { ref } from "vue";
-import { RouterLink, RouterView, userRouter } from 'vue-router';
-import { onAuthStateChanged } from 'firebase/auth';
-import { firebaseAuthentication } from '../firebase/database';
+import Login from '../components/SignIn.vue'
 
-  const user = ref(null);
-  const router = userRouter();
-
-  onAuthStateChanged(firebaseAuthentication, (currentUser) => {
-    if (currentUser) {
-      user.value = currentUser.displayName;
-    }
-    else {
-      user.value ==null;
-    }
-  });
-  
-
-  function logout() {
-    signOut(firebaseAuthentication).then(
-      () => {
-        user.value = null;
-        router.push("login");
-      },
-      (error) => {
-        errorLogout.value = error.message;
-      }
-    );
-  }
 </script>
 
 <template>
-  <!-- <div> -->
-  <div class="common-layout globalfont center">
-    <RouterLink :to="{ name: 'Login' }">
-      <el-button type="success" round v-if="!user"><el-icon><UserFilled /></el-icon>Login</el-button>
-    </RouterLink>
-    <RouterLink :to="{ name: 'Register' }">
-      <el-button type="success" round v-if="!user"><el-icon><User /></el-icon>Register</el-button>
-    </RouterLink>
 
-    <h2>The Cardiomyopathy Blog</h2>
-  </div>
-  <RouterView
-    :posts="posts"
-    :user="user"
-    @logout="logout"
-    class="globalfont center"
-  />
+  <Login />
 
 </template>
 

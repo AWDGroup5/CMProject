@@ -148,7 +148,7 @@ export default {
 <script setup>
 import { ref } from "vue";
 import { firebaseAuthentication, signInWithEmailAndPassword } from "@/firebase/database";
-import { useRouter } from "vue-router";
+import { useRouter, RouterLink, RouterView } from "vue-router";
 
 defineEmits(["login-clicked"])
 
@@ -214,15 +214,44 @@ function login() {
     
     <el-divider />
 
+    <div class="loginLink">
+      <label>
+        <RouterLink to="/">Forgotten Password?</RouterLink>
+      </label>
+
+      <label id="noAccount">
+        <RouterLink to="/register">Don't have an account? </RouterLink>
+      </label>
+    </div>
     <el-form-item>
       <el-button class="btnStandard" type="primary" style="margin: auto" @click="login">
         Login
       </el-button>
-      Don't have an account? 
+
+      
 
     </el-form-item>
   </el-form>
 </template>
 
-<style></style>
+<style>
+.loginLinks {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+}
+.loginLinks label {
+    width: 100%;
+}
+
+#noAccount {
+    text-align: right;
+}
+
+label {
+    width: 150px;
+}
+
+</style>
 
