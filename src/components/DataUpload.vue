@@ -78,9 +78,9 @@ import { useRouter } from "vue-router";
 
     ]
     const mutation = ref([]);
-    const diabetes = ref([]);
-    const gender = ref([]);
-    const age = ref("");
+    const Diabetes = ref([]);
+    const sex = ref([]);
+    const AgeatMRI = ref("");
     const ledv = ref("");
     const redv = ref("");
     const lesv = ref("");
@@ -92,10 +92,10 @@ import { useRouter } from "vue-router";
     const lsv = ref("");
     const rsv = ref("");
     const scar = ref(false);
-    const hcm = ref(false);
-    const scd = ref(false);
-    const hyp = ref(false);
-    const mye = ref(false);
+    const ApicalHCM = ref(false);
+    const SuddenCardiacDeath = ref(false);
+    const hypertension = ref(false);
+    const Myectomy = ref(false);
 
     const router = useRouter();
 
@@ -121,7 +121,7 @@ import { useRouter } from "vue-router";
         
         <el-row>
             <el-col :span="12">
-                <el-form-item label="LEDV">
+                <el-form-item label="ledv">
                     <el-input 
                         type="number" 
                         v-model="ledv"
@@ -133,7 +133,7 @@ import { useRouter } from "vue-router";
             </el-col>
 
             <el-col :span="12">
-                <el-form-item label="REDV">
+                <el-form-item label="redv">
                     <el-input 
                         type="number" 
                         v-model="redv"
@@ -147,7 +147,7 @@ import { useRouter } from "vue-router";
 
         <el-row>
             <el-col :span="12">
-                <el-form-item label="LESV">
+                <el-form-item label="lesv">
                     <el-input 
                         type="number" 
                         v-model="lesv"
@@ -159,7 +159,7 @@ import { useRouter } from "vue-router";
             </el-col>
 
             <el-col :span="12">
-                <el-form-item label="RESV">
+                <el-form-item label="resv">
                     <el-input 
                         type="number" 
                         v-model="resv"
@@ -173,7 +173,7 @@ import { useRouter } from "vue-router";
 
         <el-row>
             <el-col :span="12">
-                <el-form-item label="LVEF">
+                <el-form-item label="lvef">
                     <el-input 
                         type="number" 
                         v-model="lvef"
@@ -185,7 +185,7 @@ import { useRouter } from "vue-router";
             </el-col>   
 
             <el-col :span="12">
-                <el-form-item label="RVEF">
+                <el-form-item label="rvef">
                     <el-input 
                         type="number" 
                         v-model="rvef"
@@ -199,7 +199,7 @@ import { useRouter } from "vue-router";
 
         <el-row>
             <el-col :span="12">
-                <el-form-item label="LVMASS">
+                <el-form-item label="lvmass">
                     <el-input 
                         type="number" 
                         v-model="lvmass"
@@ -211,7 +211,7 @@ import { useRouter } from "vue-router";
             </el-col>
 
             <el-col :span="12">
-                <el-form-item label="RVMASS">
+                <el-form-item label="rvmass">
                     <el-input 
                         type="number" 
                         v-model="rvmass"
@@ -225,7 +225,7 @@ import { useRouter } from "vue-router";
 
         <el-row>
             <el-col :span="12">
-                <el-form-item label="LSV">
+                <el-form-item label="lsv">
                     <el-input 
                         type="number" 
                         v-model="lsv"
@@ -237,7 +237,7 @@ import { useRouter } from "vue-router";
             </el-col>
 
             <el-col :span="12">
-                <el-form-item label="RSV">
+                <el-form-item label="rsv">
                     <el-input 
                         type="number" 
                         v-model="rsv"
@@ -281,7 +281,7 @@ import { useRouter } from "vue-router";
                 <el-form-item label="Age at MRI">
                     <el-input 
                         type="number" 
-                        v-model="age"
+                        v-model="AgeatMRI"
                         required
                         style="width: 50px;"
                     >
@@ -290,10 +290,10 @@ import { useRouter } from "vue-router";
             </el-col>
 
             <el-col :span="12">
-                <el-form-item label="Gender">
+                <el-form-item label="Sex">
                     <el-select
-                        v-model="gender"
-                        placeholder="Select a gender"
+                        v-model="sex"
+                        placeholder="Select a sex"
                         required
                         style="width: 260px"
                     >
@@ -310,7 +310,7 @@ import { useRouter } from "vue-router";
 
         <el-form-item label="Diabetes">
             <el-select
-                v-model="diabetes"
+                v-model="Diabetes"
                 placeholder="Select an option"
                 required
                 style="width: 260px"
@@ -328,7 +328,7 @@ import { useRouter } from "vue-router";
             <el-col :span="12">
                 <el-form-item label="Apical HCM">
                     <el-checkbox 
-                        v-model="hcm"
+                        v-model="ApicalHCM"
                     />
                 </el-form-item>
             </el-col>
@@ -336,7 +336,7 @@ import { useRouter } from "vue-router";
             <el-col :span="12">
                 <el-form-item label="Sudden Cardiac Death">
                     <el-checkbox 
-                        v-model="scd"
+                        v-model="SuddenCardiacDeath"
                     />
                 </el-form-item>
             </el-col>
@@ -346,7 +346,7 @@ import { useRouter } from "vue-router";
             <el-col :span="12">
                 <el-form-item label="Hypertension">
                     <el-checkbox 
-                        v-model="hyp"
+                        v-model="hypertension"
                     />
                 </el-form-item>
             </el-col>
@@ -354,7 +354,7 @@ import { useRouter } from "vue-router";
             <el-col :span="12">
                 <el-form-item label="Myectomy">
                     <el-checkbox 
-                        v-model="mye"
+                        v-model="Myectomy"
                     />
                 </el-form-item>
             </el-col>

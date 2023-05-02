@@ -98,13 +98,14 @@ a {
 
 .title-card {
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .logo {
   display: block;
   width: 90px;
   height: 80px;
-  margin-bottom: 1rem;
+  margin: auto;
 }
 
 .sidebar {

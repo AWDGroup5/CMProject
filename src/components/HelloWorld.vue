@@ -29,14 +29,8 @@
 
   .greetings h1,
   .greetings h3 {
-    font-style: italic;
+    font-style: Bold;
     text-align: center;
   }
 
-  @media (min-width: 1024px) {
-    .greetings h1,
-    .greetings h3 {
-      text-align: left;
-    }
-  }
 </style>

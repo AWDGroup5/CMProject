@@ -5,7 +5,17 @@ import DataUpload from '../components/DataUpload.vue';
 </script>
 
 <template>
-    <Data />
+    <Suspense>
+        <main>
+            <Data />
+        </main>
+
+        <template #fallback>
+            <div>Loading...</div>
+        </template>
+    
+    </Suspense>
+    
     <DataUpload />
 
 </template>
