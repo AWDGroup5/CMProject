@@ -215,7 +215,7 @@ function login() {
     <el-divider />
 
     <el-form-item>
-      <el-button type="success" style="margin: auto" @click="login">
+      <el-button class="btnStandard" type="primary" style="margin: auto" @click="login">
         Login
       </el-button>
       Don't have an account? 

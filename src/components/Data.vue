@@ -2,13 +2,62 @@
 import { ref } from "vue";
 const options = [
 {
-    value: 'Male',
-    label: 'Male',
+    value: 'heartCondition', 
+    label: '---------- Heart Condition ----------', 
+    disabled: true
+},
+
+{
+    value: 'ledv',
+    label: 'Left Ventricular End Diastolic Volume',
 },
 {
-    value: 'Female',
-    label: 'Female',
+    value: 'redv',
+    label: 'Right Ventricular End Diastolic Volume',
 },
+{
+    value: 'lsev',
+    label: 'Left Ventricular End Systolic Volume',
+},
+{
+    value: 'resv',
+    label: 'Right Ventricular End Systolic Volume',
+},
+{
+    value: 'lvef',
+    label: 'Left Ventricular Ejection Fraction',
+},
+{
+    value: 'rvef',
+    label: 'Right Ventricular Ejection Fraction',
+},
+{
+    value: 'lvmass',
+    label: 'Left Ventricular Mass',
+},
+{
+    value: 'rvmass',
+    label: 'Right Ventricular Mass',
+},
+{
+    value: 'lsv',
+    label: 'Left Systolic Volume',
+},
+{
+    value: 'rsv',
+    label: 'Right Systolic Volume',
+},
+{
+    value: 'scar',
+    label: 'Fiborsis / Scarring',
+},
+
+{
+    value: 'mutation', 
+    label: '-------------- Mutation -------------', 
+    disabled: true
+},
+
 {
     value: 'MYH7',
     label: 'MYH7',
@@ -45,64 +94,114 @@ const options = [
     value: 'TTN',
     label: 'TTN',
 },
+
+{
+    value: 'patient', 
+    label: '-------- Patient Information --------', 
+    disabled: true
+},
+
+{
+    value: 'Male',
+    label: 'Male',
+},
+{
+    value: 'Female',
+    label: 'Female',
+},
+{
+    value: 'age', 
+    label: 'Age at MRI', 
+},
+{
+    value: 'hcm',
+    label: 'Apical HCM', 
+},
+{
+    value: 'scd',
+    label: 'Sudden Cardiac Death',
+},
+{
+    value: 'hyp',
+    label: 'Hypertension',
+},
+{
+    value: 'mye',
+    label: 'Myectomy',
+},
+
+
+
+{
+    value: 'diabetes', 
+    label: '-------------- Diabetes -------------', 
+    disabled: true
+},
+
 {
     value: 'None', 
-    label: 'None', 
+    label: 'No Diabetes', 
 },
 {
     value: 'IGT',
-    label: 'IGT', 
+    label: 'Impaired Glucose Tolerance', 
 },
 {
     value: 'Type 1',
-    label: 'Type 1',
+    label: 'Type 1 Diabetes',
 },
 {
     value: 'Type 2',
-    label: 'Type 2',
+    label: 'Type 2 Diabetes',
 },
 
 ]
-const mutation = ref([]);
-const diabetes = ref([]);
-const gender = ref([]);
-const age = ref("");
-const ledv = ref("");
-const redv = ref("");
-const lesv = ref("");
-const resv = ref("");
-const lvef = ref("");
-const rvef = ref("");
-const lvmass = ref("");
-const rvmass = ref("");
-const lsv = ref("");
-const rsv = ref("");
-const scar = ref(false);
-const hcm = ref(false);
-const scd = ref(false);
-const hyp = ref(false);
-const mye = ref(false);
+const option1 = ref("");
+const option2 = ref("");
 
 </script>
 
 <template>
 
     
-
-    <el-form-item label="Mutation">
+    <el-form id="queryData">
+        <el-row>
+            <el-form-item label="Option 1">
                 <el-select
-                    v-model="mutation"
-                    placeholder="Select a mutation"
+                    v-model="option1"
+                    placeholder="Select first data set"
                     style="width: 260px"
                 >
                 <el-option
-                    v-for="item in mutations"
+                    v-for="item in options"
                     :key="item.value"
                     :label="item.label"
                     :value="item.value"
+                    :disabled="item.disabled"
                 />
                 </el-select>
-    </el-form-item>
+            </el-form-item>
+            <el-form-item label="Option 2">
+                <el-select
+                    v-model="option2"
+                    placeholder="Select second data set"
+                    style="width: 260px"
+                >
+                <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                    :disabled="item.disabled"
+                />
+                </el-select>
+            </el-form-item>
+        </el-row>
+
+        <el-button class="btnStandard" type="primary">
+            Display Data
+        </el-button>
+    </el-form>
 
     <el-divider />
 
@@ -127,6 +226,13 @@ const mye = ref(false);
         width: 100%;
         height: 300px;
         float: left;
+    }
+
+    #queryData {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-gap: 10px;
+        padding: 10px;
     }
 
 </style>

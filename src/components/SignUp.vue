@@ -269,8 +269,8 @@ function register() {
     <el-divider />
 
     <el-form-item>
-      <el-button
-        type="success"
+      <el-button class="btnStandard"
+        type="primary"
         style="margin: auto"
         @click="register"
         >Register

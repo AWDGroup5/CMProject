@@ -61,19 +61,19 @@ import { useRouter } from "vue-router";
     const diabetesType = [
         {
             value: 'None', 
-            label: 'None', 
+            label: 'No Diabetes', 
         },
         {
             value: 'IGT',
-            label: 'IGT', 
+            label: 'Impaired Glucose Tolerance', 
         },
         {
             value: 'Type 1',
-            label: 'Type 1',
+            label: 'Type 1 Diabetes',
         },
         {
             value: 'Type 2',
-            label: 'Type 2',
+            label: 'Type 2 Diabetes',
         },
 
     ]
@@ -363,9 +363,9 @@ import { useRouter } from "vue-router";
         <el-divider />
 
         <el-form-item>
-            <el-button type="success" @click="addData">Add Data</el-button>
-            <RouterLink :to="{ name: 'PostList' }"
-            ><el-button>Cancel</el-button>
+            <el-button class="btnStandard"  type="primary" @click="addData">Add Data</el-button>
+            <RouterLink :to="{ name: 'Data' }"
+            >
             </RouterLink>
         </el-form-item>
     </el-form>

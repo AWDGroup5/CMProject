@@ -55,7 +55,8 @@ html, body {
 
 a {
   text-decoration: none;
-  color: #0a529e;
+  color: red;
+  font-size: 16px;
 }
 
 .app {
@@ -83,6 +84,8 @@ a {
 
 .headermenu {
   cursor: pointer;
+  color: red;
+  font-size: 16px;
 }
 
 .main {
@@ -110,7 +113,7 @@ a {
   top: 0;
   width: 250px;
   height: 100%;
-  background-color: #eb0d4c;
+  background-color: var(--vt-c-divider-dark-2);
   overflow-y: auto;
   padding: 1rem;
   z-index: 100;

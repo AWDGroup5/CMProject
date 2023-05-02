@@ -15,21 +15,13 @@ a,
   transition: 0.4s;
 }
 
+.btnStandard {
+  margin: auto;
+  width: 50%
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: rgba(255, 91, 91, .3);
-  }
-}
-
-@media (min-width: 1600px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
   }
 }
