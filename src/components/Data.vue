@@ -1,5 +1,5 @@
 <script setup>
-
+import { ref } from "vue";
 const options = [
 {
     value: 'Male',
