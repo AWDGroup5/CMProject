@@ -147,10 +147,10 @@ export default {
 -->
 <script setup>
 import { ref } from "vue";
-import { firebaseAuthentication, signInWithEmailAndPassword } from "@/firebase/database";
+import { firebaseAuthentication, signInWithEmailAndPassword } from "../firebase/database";
 import { useRouter, RouterLink, RouterView } from "vue-router";
 
-defineEmits(["login-clicked"])
+//defineEmits(["login-clicked"])
 
 const email = ref("");
 const password = ref("");
