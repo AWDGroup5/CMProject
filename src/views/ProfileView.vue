@@ -4,8 +4,16 @@ import ProfilePosts from '../components/ProfilePosts.vue'
 </script>
 
 <template>
+    <Suspense>
+        <main>
+            <Profile />
+        </main>
 
-    <Profile />
+        <template #fallback>
+            <div>Loading...</div>
+        </template>
+    
+    </Suspense>
     <ProfilePosts />
     
 </template>

@@ -1,11 +1,27 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import { firebaseAuthentication, createUserWithEmailAndPassword, updateProfile } from "@/firebase/database";
+import { firebaseFireStore, doc, getDoc } from "@/firebase/database";
+import { firebaseAuthentication, collection, where, query } from '@/firebase/database';
 
-const firstName = ref("");
-const surname = ref("");
-const userName = ref("");
+defineProps ({
+    user: {
+        type: Object,
+        default: () => {}
+    }
+})
+
+const userRef = doc(firebaseFireStore,"users", "A6sLxD93MyfT54tcgyeU")
+const userSnap = await getDoc(userRef)
+
+if(userSnap,exists()) {
+    user.value = userSnap.data().displayName;
+} else {
+    user.value == null;
+    console.log(firebaseError)
+}
+
+const displayName = ref("");
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
@@ -31,31 +47,13 @@ const router = useRouter();
 <template>
     <el-form class="register" @submit.prevent>
     
-        <el-divider class="dividerHeader"/>
+        <el-divider />
 
         <div v-if="errorProfile">
             <el-button plain type="danger" disabled icon="el-icon-error">
                 {{ errorProfile }}
             </el-button>
         </div>
-
-        <el-form-item label="First Name">
-            <el-input
-                type="text"
-                required
-                autocomplete="off"
-                v-model="firstName"
-            ></el-input>
-        </el-form-item>
-
-        <el-form-item label="Last Name">
-            <el-input
-                type="text"
-                required
-                autocomplete="off"
-                v-model="surname"
-            ></el-input>
-        </el-form-item>
 
         <el-form-item label="Email">
             <el-input
@@ -83,6 +81,8 @@ const router = useRouter();
                 >Update
             </el-button>
         </el-form-item>
+
+        <el-divider />
     </el-form>
 
 </template>
@@ -92,4 +92,5 @@ const router = useRouter();
     margin: auto;
     width: 50%;
 }
+
 </style>

@@ -41,13 +41,15 @@ const login = ({
 -->
 
 <script setup>
-import Login from '../components/SignIn.vue'
+import Login from '../components/SignIn.vue';
+import ForgotPass from '../components/ForgotPass.vue';
 
 </script>
 
 <template>
 
   <Login />
+  <ForgotPass />
 
 </template>
 

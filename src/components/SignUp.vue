@@ -139,8 +139,6 @@ import { firebaseAuthentication, createUserWithEmailAndPassword, updateProfile }
 
 defineEmits(["register-clicked"])
 
-const firstName = ref("");
-const surname = ref("");
 const displayName = ref("");
 const email = ref("");
 const password = ref("");
@@ -169,7 +167,7 @@ function register() {
   };
 
   if (!errorRegistration.value) {
-    createUserWithEmailAndPassword(firebaseAuthentication, info.email, info.email)
+    createUserWithEmailAndPassword(firebaseAuthentication, info.email, info.password, info.displayName)
       .then(
         (userCredentials) => {
           userCredentials.displayName = info.displayName
@@ -203,26 +201,6 @@ function register() {
         {{ errorRegistration }}
       </el-button>
     </div>
-
-    <el-form-item label="First Name">
-      <el-input
-        type="text"
-        placeholder="First Name"
-        required
-        autocomplete="off"
-        v-model="firstName"
-      ></el-input>
-    </el-form-item>
-
-    <el-form-item label="Last Name">
-      <el-input
-        type="text"
-        placeholder="Surname"
-        required
-        autocomplete="off"
-        v-model="surname"
-      ></el-input>
-    </el-form-item>
 
     <el-form-item label="Display Name">
       <el-input
@@ -267,6 +245,12 @@ function register() {
     </el-form-item>
 
     <el-divider />
+
+    <div class="loginLink">
+      <label>
+        <RouterLink to="/login">Already have an account?</RouterLink>
+      </label>
+    </div>
 
     <el-form-item>
       <el-button class="btnStandard"

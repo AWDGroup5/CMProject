@@ -168,7 +168,7 @@ function login() {
     .then(
       () => {
         // const user = userCredential.user;
-        router.push("/");
+        router.push("/data");
         // console.log("user = ", user)
         // router.push({ name: 'PostList', params: { user: user} });
       },
@@ -223,34 +223,34 @@ function login() {
         <RouterLink to="/register">Don't have an account? </RouterLink>
       </label>
     </div>
+
     <el-form-item>
       <el-button class="btnStandard" type="primary" style="margin: auto" @click="login">
         Login
       </el-button>
-
-      
-
     </el-form-item>
+    
   </el-form>
+
 </template>
 
 <style>
-.loginLinks {
+.loginLink {
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 10px;
     padding: 10px;
 }
-.loginLinks label {
+.loginLink label {
     width: 100%;
-}
-
-#noAccount {
-    text-align: right;
 }
 
 label {
     width: 150px;
+}
+
+#noAccount {
+  text-align: right;
 }
 
 </style>

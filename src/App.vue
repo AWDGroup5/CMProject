@@ -2,8 +2,26 @@
 import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { firebaseAuthentication, firebaseFireStore, collection, where, query } from '@/firebase/database';
+import router from './router';
 
 const sidebarOpen = ref(false)
+
+const userTable = collection(firebaseFireStore, "users");
+const user = ref(null)
+
+/*
+  const userTest = await where(userTable, email, '==', user.value);
+*/
+
+onAuthStateChanged(firebaseAuthentication, (currentUser) => {
+  if (currentUser) {
+    user.value = currentUser.email;
+  } else {
+    user.value == null;
+  }
+});
 
 const toggleSidebar = () => {
   sidebarOpen.value = !sidebarOpen.value
@@ -18,7 +36,8 @@ const toggleSidebar = () => {
           <label v-else>X</label>
         </div>
         <nav class="headernav">
-          <RouterLink to="/login">Login</RouterLink>
+          <RouterLink v-if="!user.value == null" to="/login">Login / Register</RouterLink>
+          <RouterLink v-else to="/profile">Profile</RouterLink>
         </nav>
       </div>
     </header>
@@ -27,6 +46,7 @@ const toggleSidebar = () => {
         <div class="wrapper">
           <img alt="CMP logo" class="logo" src="@/assets/heart-attack.png" width="125" height="125" />
           <HelloWorld msg="Cardiomyopathy Project" />
+          {{ user }}
         </div>
       </div>
       <div class="content-card">
@@ -39,10 +59,10 @@ const toggleSidebar = () => {
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/news">News</RouterLink>
-        <RouterLink to="/search">Search</RouterLink>
+       <!-- <RouterLink to="/search">Search</RouterLink>-->
         <RouterLink to="/message-board">Message Board</RouterLink>
         <RouterLink to="/data">Data</RouterLink>
-        <RouterLink to="/logout">Logout</RouterLink>
+        <RouterLink v-if="!user.value == null" to="/logout">Logout</RouterLink>
       </nav>
     </div>
   </div>
@@ -91,7 +111,8 @@ a {
 
 .main {
   flex: 1;
-  margin: 0 auto;
+  margin-left: 15%;
+  margin-right: 15%;
   max-width: 1200px;
   padding: 2rem;
   box-sizing: border-box;

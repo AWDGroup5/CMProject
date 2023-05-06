@@ -125,7 +125,7 @@ const options = [
             label: 'Myectomy',
         },
         {
-            value: 'Diabetes',
+            value: 'diabetes',
             label: 'Diabetes'
         }
     ]
@@ -135,7 +135,6 @@ const options = [
 const option1 = ref("");
 const option2 = ref("");
     
-const hcmDataRef = collection(firebaseFireStore,'hcm_data');
 
 function setOption1(event) {
     option1.value = event.target.value;
@@ -150,15 +149,39 @@ const test = computed( () => {
 })
 
 
+async function fetch() {
+    try {
+        const hcmDataRef = collection(firebaseFireStore,'Temp_HCMData')
+        const yAxis =  await where(hcmDataRef, option1.value, '==', true).get();
+        
+        console.log(hcmDataRef)
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+/*
+const yAxis =  await where(hcmDataRef, option1.value, '==', true).get();
+
 function queryDatabase() {
-    const yAxis = hcmDataRef.where(option1.value, '==', true).get();
     const xAxis = hcmDataRef.where(option2.value, '==', true).get();
 }
 
 
+async function fetch(){
+    try {
+        const db = firebaseFireStore()
+        const myAuthLevel = (firebaseFireStore.auth().currentUser != null) ? await (await db.collection('users').doc(firebaseFireStore.auth().currentUser.uid).get()).data().authLevel : 0
+        console.log(myAuthLevel)
+        const courses = await db.collection("courses").where(myAuthLevel, '>=', 'authLevel').get()// orderBy('createdAt').get()
+        console.log(courses)
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 /*
-const hcmDataRef = collection(firebaseFireStore,"hcm_data");
+const hcmDataRef = collection(firebaseFireStore,"Temp_HCMData");
 
 const yAxis = await hcmDataRef.where(option1.value, '==', true).get();
 const xAxis = await hcmDataRef.where(option2.value, '==', true).get();
@@ -217,8 +240,12 @@ const xAxis = await hcmDataRef.where(option2.value, '==', true).get();
             </el-form-item>
         </el-row>
 
-        <el-button class="btnStandard" type="primary" @click="queryDatabase">
-            Display Data
+        <el-button 
+            class="btnStandard" 
+            type="primary" 
+            @click="fetch"
+        >
+                Display Data
         </el-button>
     </el-form>
 

@@ -6,7 +6,7 @@ import PostList from '../components/PostList.vue';
 import SinglePost from '../components/SinglePost.vue';
 import Login from '../views/LoginScreen.vue';
 import Logout from '../views/LogoutView.vue';
-import Register from '../views/LogoutView.vue';
+import Register from '../views/RegisterView.vue';
 import Data from '../views/DataView.vue';
 import Profile from '../views/ProfileView.vue';
 
@@ -71,6 +71,10 @@ const router = createRouter({
       path: "/profile",
       name: "Profile",
       component: Profile,
+    },
+    {
+      path: "/:catchAll(.*)",
+      redirect: "/",
     }
   ]
 })
