@@ -17,7 +17,7 @@ const user = ref(null)
 
 onAuthStateChanged(firebaseAuthentication, (currentUser) => {
   if (currentUser) {
-    user.value = currentUser.email;
+    user.value = currentUser.displayName;
   } else {
     user.value == null;
   }
@@ -62,7 +62,7 @@ const toggleSidebar = () => {
        <!-- <RouterLink to="/search">Search</RouterLink>-->
         <RouterLink to="/message-board">Message Board</RouterLink>
         <RouterLink to="/data">Data</RouterLink>
-        <RouterLink v-if="!user.value == null" to="/logout">Logout</RouterLink>
+        <RouterLink v-if="!user == null" to="/logout">Logout</RouterLink>
       </nav>
     </div>
   </div>

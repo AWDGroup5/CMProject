@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { firebaseAuthentication, sendPasswordResetEmail } from "../firebase/database";
+import router from '../router';
 
 const email = ref("");
 const errorFirebase = ref(null);
@@ -13,6 +14,7 @@ function reset() {
     }
 sendPasswordResetEmail(auth, deets.email)
     .then(() => {
+        router.push("/login");
     })
     .catch((error) => {
         errorFirebase.value = error.message;
@@ -22,7 +24,7 @@ sendPasswordResetEmail(auth, deets.email)
 
 <template>
     <el-form label-width="50px" @submit.prevent>
-        <h2>Forgotten Password</h2>
+        <h2>Reset Password</h2>
 
         <el-divider />
 
@@ -46,7 +48,7 @@ sendPasswordResetEmail(auth, deets.email)
 
         <div class="loginLink">
         <label>
-            <RouterLink to="/">Login</RouterLink>
+            <RouterLink to="/login">Click Here to Login</RouterLink>
         </label>
 
         <label id="noAccount">

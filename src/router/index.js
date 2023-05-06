@@ -9,6 +9,7 @@ import Logout from '../views/LogoutView.vue';
 import Register from '../views/RegisterView.vue';
 import Data from '../views/DataView.vue';
 import Profile from '../views/ProfileView.vue';
+import Forgotten from '../views/ForgottenView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -61,6 +62,11 @@ const router = createRouter({
       path: "/register",
       name: "Register",
       component: Register,
+    },
+    {
+      path: "/forgot",
+      name: "Forgot",
+      component: Forgotten,
     },
     {
       path: "/data",
