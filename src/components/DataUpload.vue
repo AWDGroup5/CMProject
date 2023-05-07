@@ -97,6 +97,13 @@ import { useRouter } from "vue-router";
     const hypertension = ref(false);
     const Myectomy = ref(false);
 
+    let date_ob = new Date();
+    let date = ("0" + date_ob.getDate()).slice(-2);
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    let year = date_ob.getFullYear();
+
+    const dateToday = ref(year + month + date);
+
     const router = useRouter();
 
     function addData() {
@@ -111,6 +118,7 @@ import { useRouter } from "vue-router";
     <el-form label-width="150px"  @submit.prever>
         <div style="margin: auto; text-align: center" >
             <h2>Add Data</h2>
+
         </div>
         
         <el-divider />

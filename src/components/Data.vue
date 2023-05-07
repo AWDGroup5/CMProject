@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 import { collection, firebaseFireStore, where, query } from "@/firebase/database";
+import { getDocs } from "firebase/firestore";
 
 const options = [
 {
@@ -149,17 +150,37 @@ const test = computed( () => {
 })
 
 
+
+/* THIS ONE WORKS
+async function fetch() {
+    const querySnap = await getDocs(query(collection(firebaseFireStore,'HCMData')));
+
+    querySnap.forEach(doc => {
+        console.log(doc.id, '=>', doc.data());
+    })
+}
+*/
+
 async function fetch() {
     try {
-        const hcmDataRef = collection(firebaseFireStore,'Temp_HCMData')
-        const yAxis =  await where(hcmDataRef, option1.value, '==', true).get();
+        const hcmDataRef = query(collection(firebaseFireStore,'HCMData'), where('uploaded', '==', 20230401))
+        //const yAxis = await where(hcmDataRef, 'ledv', '==', true).get();
+        const dataSnap = await getDocs(hcmDataRef);
         
-        console.log(hcmDataRef)
+        if (dataSnap.empty){
+            console.log('fail');
+            return;
+        }
 
-    } catch (err) {
-        console.log(err);
+        dataSnap.forEach(doc => {
+            console.log(doc.id, '=>', doc.data().uploaded);
+        })
+
+    } catch {
+        console.log('failed');
     }
 }
+
 /*
 const yAxis =  await where(hcmDataRef, option1.value, '==', true).get();
 

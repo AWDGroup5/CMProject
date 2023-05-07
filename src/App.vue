@@ -1,10 +1,10 @@
 <script setup>
-import { ref } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { firebaseAuthentication, firebaseFireStore, collection, where, query } from '@/firebase/database';
-import router from './router';
+import { ref } from 'vue';
+import { RouterLink, RouterView } from 'vue-router';
+import { onAuthStateChanged } from 'firebase/auth';
+import { firebaseAuthentication, firebaseFireStore, collection, timestamp, where, query } from '@/firebase/database';
+
+import HelloWorld from './components/HelloWorld.vue';
 
 const sidebarOpen = ref(false)
 
@@ -28,15 +28,21 @@ const toggleSidebar = () => {
 }
 </script>
 <template>
+
   <div class="app">
+    
     <header class="header">
       <div class="headerwrapper">
         <div class="headermenu" @click="toggleSidebar">
-          <label v-if="!sidebarOpen">Menu</label>
-          <label v-else>X</label>
+          <label>Menu</label>
+        </div>
+
+        <div id="headerUserID">
+
+          {{ user }}
         </div>
         <nav class="headernav">
-          <RouterLink v-if="!user.value == null" to="/login">Login / Register</RouterLink>
+          <RouterLink v-if="user == null" to="/login">Login / Register</RouterLink>
           <RouterLink v-else to="/profile">Profile</RouterLink>
         </nav>
       </div>
@@ -46,7 +52,7 @@ const toggleSidebar = () => {
         <div class="wrapper">
           <img alt="CMP logo" class="logo" src="@/assets/heart-attack.png" width="125" height="125" />
           <HelloWorld msg="Cardiomyopathy Project" />
-          {{ user }}
+
         </div>
       </div>
       <div class="content-card">
@@ -55,7 +61,7 @@ const toggleSidebar = () => {
     </main>
     <div class="nav-bar"></div>
     <div class="sidebar" v-show="sidebarOpen" :class="{ show: sidebarOpen }">
-      <div class="sidebarclose" @click="toggleSidebar">X</div>
+      <div class="sidebarClose" @click="toggleSidebar">Close</div>
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/news">News</RouterLink>
@@ -108,7 +114,10 @@ a {
   color: red;
   font-size: 16px;
 }
-
+#headerUserID {
+  font-size: 20px;
+  font-weight: bold;
+}
 .main {
   flex: 1;
   margin-left: 15%;
@@ -136,7 +145,7 @@ a {
   top: 0;
   width: 250px;
   height: 100%;
-  background-color: var(--vt-c-divider-dark-2);
+  background-color: rgba(84, 84, 84, 1);
   overflow-y: auto;
   padding: 1rem;
   z-index: 100;
@@ -152,6 +161,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  top: 3%;
 }
 
 .sidebar nav a {
@@ -159,13 +169,12 @@ a {
   background-color: #070707;
   border-radius: 4px;
 }
-.sidebar__close {
+.sidebarClose {
   position: absolute;
-  top: 0px;
-  right: 2px;
+  top: 20px;
+  right: 20px;
   cursor: pointer;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 16px;
 }
 
 </style>

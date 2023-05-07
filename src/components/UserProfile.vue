@@ -1,16 +1,26 @@
 <script setup>
 import { ref, watch } from "vue";
-import { useRouter } from "vue-router";
 import { firebaseFireStore, doc, getDoc } from "@/firebase/database";
 import { firebaseAuthentication, collection, where, query } from '@/firebase/database';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
+const user = ref(null)
+
+onAuthStateChanged(firebaseAuthentication, (currentUser) => {
+if (currentUser) {
+    user.value = currentUser.uid;
+} else {
+    user.value == null;
+}
+});
+
+/*
 defineProps ({
     user: {
         type: Object,
         default: () => {}
     }
 })
-
 const userRef = doc(firebaseFireStore,"users", "A6sLxD93MyfT54tcgyeU")
 const userSnap = await getDoc(userRef)
 
@@ -20,6 +30,7 @@ if(userSnap,exists()) {
     user.value == null;
     console.log(firebaseError)
 }
+*/
 
 const displayName = ref("");
 const email = ref("");
@@ -40,8 +51,13 @@ watch(confirmPassword, () => {
   }
 })
 
-
-const router = useRouter();
+/*
+getAuth().updateCurrentUser(uid, {
+    displayName: displayName.value,
+    email: email.value,
+    password: password.value
+})
+*/
 </script>
 
 <template>
@@ -55,10 +71,21 @@ const router = useRouter();
             </el-button>
         </div>
 
+        <el-form-item label="Display Name">
+        <el-input
+            type="text"
+            placeholder="Display Name"
+            required
+            autocomplete="off"
+            v-model="displayName"
+        ></el-input>
+        </el-form-item>
+
         <el-form-item label="Email">
             <el-input
                 type="email"
                 required
+                placeholder="Placeholder"
                 autocomplete="off"
                 v-model="email"
             ></el-input>
@@ -72,6 +99,17 @@ const router = useRouter();
                 show-passwod
                 v-model="password"
             ></el-input>
+        </el-form-item>
+
+        <el-form-item label="Confirm Password" prop="pass">
+        <el-input
+            type="password"
+            placeholder="confirm password"
+            required
+            autocomplete="off"
+            show-passwod
+            v-model="confirmPassword"
+        ></el-input>
         </el-form-item>
 
         <el-form-item>

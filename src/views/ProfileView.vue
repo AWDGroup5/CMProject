@@ -1,6 +1,7 @@
 <script setup>
 import Profile from '../components/UserProfile.vue'
 import ProfilePosts from '../components/ProfilePosts.vue'
+
 </script>
 
 <template>
@@ -10,11 +11,26 @@ import ProfilePosts from '../components/ProfilePosts.vue'
         </main>
 
         <template #fallback>
-            <div>Loading...</div>
+            <div>Loading profile data...
+                <el-divider />
+            </div>
         </template>
+        
     
     </Suspense>
-    <ProfilePosts />
+    <Suspense>
+        <main>
+            <ProfilePosts />
+        </main>
+
+        <template #fallback>
+            <div>Loading uploaded data...
+                <el-divider />
+            </div>
+        </template>
+        
+    
+    </Suspense>
     
 </template>
 

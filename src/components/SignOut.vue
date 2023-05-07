@@ -2,9 +2,23 @@
 import { ref } from "vue";
 import { firebaseAuthentication } from "../firebase/database";
 import { useRouter, RouterLink, RouterView } from "vue-router";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 const router = useRouter();
+  
+const user = ref(null)
+
+onAuthStateChanged(firebaseAuthentication, (currentUser) => {
+if (currentUser) {
+    user.value = currentUser.uid;
+} else {
+    user.value == null;
+}
+});
+
+function cancel() {
+    router.go(-1);
+}
 
 function logout() {
     signOut(firebaseAuthentication).then(
@@ -33,7 +47,7 @@ function logout() {
         </div>
 
         <div class="cancel">
-            <el-button class="btnStandard" type="danger" @click="logout">
+            <el-button class="btnStandard" type="danger" @click="cancel">
                 Cancel
             </el-button>
         </div>

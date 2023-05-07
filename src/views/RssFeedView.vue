@@ -23,6 +23,16 @@
   const items = ref(null);
   const loaded = ref(false);
   const updating = ref(false);
+  
+  const user = ref(null)
+
+  onAuthStateChanged(firebaseAuthentication, (currentUser) => {
+    if (currentUser) {
+      user.value = currentUser.uid;
+    } else {
+      user.value == null;
+    }
+  });
 
   async function getData() {
     const rss = localStorage.getItem(`CmRss`);
