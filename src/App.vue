@@ -34,7 +34,7 @@ const toggleSidebar = () => {
     <header class="header">
       <div class="headerwrapper">
         <div class="headermenu" @click="toggleSidebar">
-          <label>Menu</label>
+          <label style="font-weight: 600;color: white">Menu</label>
         </div>
 
         <div id="headerUserID">
@@ -42,7 +42,7 @@ const toggleSidebar = () => {
           {{ user }}
         </div>
         <nav class="headernav">
-          <RouterLink v-if="user == null" to="/login">Login / Register</RouterLink>
+          <RouterLink v-if="user == null" to="/login" style="font-weight: 600;color: white">Login / Register</RouterLink>
           <RouterLink v-else to="/profile">Profile</RouterLink>
         </nav>
       </div>
@@ -82,8 +82,8 @@ html, body {
 
 a {
   text-decoration: none;
-  color: red;
-  font-size: 16px;
+  color: #ffffff;
+    font-weight: 600;
 }
 
 .app {
@@ -93,35 +93,29 @@ a {
 }
 
 .header {
-
+  background: rgba(255, 0, 89,1);
   border-bottom: 1px solid #f70561;
   padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  height: 90px;
 }
 
-.headerwrapper {
+.header__wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-.headermenu {
+.header__menu {
   cursor: pointer;
-  color: red;
-  font-size: 16px;
 }
-#headerUserID {
-  font-size: 20px;
-  font-weight: bold;
-}
+
 .main {
   flex: 1;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin: 0 auto;
   max-width: 1200px;
   padding: 2rem;
   box-sizing: border-box;
@@ -129,14 +123,13 @@ a {
 
 .title-card {
   margin-bottom: 2rem;
-  text-align: center;
 }
 
 .logo {
   display: block;
   width: 90px;
   height: 80px;
-  margin: auto;
+  margin-bottom: 1rem;
 }
 
 .sidebar {
@@ -145,7 +138,7 @@ a {
   top: 0;
   width: 250px;
   height: 100%;
-  background-color: rgba(84, 84, 84, 1);
+  background-color: #eb0d4c;
   overflow-y: auto;
   padding: 1rem;
   z-index: 100;
@@ -161,7 +154,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  top: 3%;
+  top: 25px;
 }
 
 .sidebar nav a {
@@ -169,12 +162,14 @@ a {
   background-color: #070707;
   border-radius: 4px;
 }
-.sidebarClose {
+.sidebar__close {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 0px;
+  right: 2px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  color:white
 }
 
 </style>
