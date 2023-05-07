@@ -1,7 +1,19 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, sendPasswordResetEmail } from "firebase/auth";
-import { getFirestore, serverTimestamp, collection, onSnapshot, query, where, deleteDoc, getDocs, setDoc, doc, getDoc } from "firebase/firestore";
+import { 
+  getAuth, signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, onAuthStateChanged, 
+  signOut, updateProfile, 
+  sendPasswordResetEmail, sendEmailVerification 
+} from "firebase/auth";
+import { 
+  getFirestore, serverTimestamp, 
+  collection, onSnapshot, 
+  query, where, 
+  deleteDoc, getDocs, 
+  setDoc, doc, 
+  addDoc, getDoc 
+} from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,5 +33,11 @@ const firebaseAuthentication = getAuth();
 const firebaseFireStore = getFirestore();
 const timestamp = serverTimestamp();
 
-export { app, firebaseAuthentication, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile,
-  firebaseFireStore, timestamp, collection, onSnapshot, serverTimestamp, query, where, deleteDoc, getDocs, setDoc, doc, getDoc, sendPasswordResetEmail };
+export { 
+  app, firebaseAuthentication, signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, onAuthStateChanged, signOut, 
+  updateProfile, firebaseFireStore, timestamp, 
+  collection, onSnapshot, serverTimestamp, 
+  query, where, deleteDoc, getDocs, setDoc, doc, 
+  getDoc, sendPasswordResetEmail, sendEmailVerification, addDoc
+};
