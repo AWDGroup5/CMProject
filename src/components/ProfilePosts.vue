@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive, computed } from 'vue';
 import { where, getDocs } from 'firebase/firestore';
 import { firebaseAuthentication, collection, firebaseFireStore, query } from "../firebase/database";
 import { onAuthStateChanged } from 'firebase/auth';
@@ -26,8 +26,8 @@ async function fetch() {
         }
 
         dataSnap.forEach(doc => {
-            uploadedData.value = doc.id, '=>', doc.data();
-            console.log(doc.id, '=>', doc.data().uploaded, doc.data().female);
+            uploadedData.value = (doc.id, '=>', doc.data());
+            //console.log(doc.id, '=>', doc.data().uploaded, doc.data().female);
         })
 
     } catch (err) {
@@ -52,6 +52,8 @@ async function fetch() {
         </el-table>
         <el-button class="btnStandard" type="primary" @click="fetch">{{ user }}</el-button>
     </el-col>
+
+    <label>{{ uploadedData }}</label>
 
 </template>
 

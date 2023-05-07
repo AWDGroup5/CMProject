@@ -34,7 +34,7 @@ const toggleSidebar = () => {
     <header class="header">
       <div class="headerwrapper">
         <div class="headermenu" @click="toggleSidebar">
-          <label style="font-weight: 600;color: white">Menu</label>
+          <label>Menu</label>
         </div>
 
         <div id="headerUserID">
@@ -42,7 +42,7 @@ const toggleSidebar = () => {
           {{ user }}
         </div>
         <nav class="headernav">
-          <RouterLink v-if="user == null" to="/login" style="font-weight: 600;color: white">Login / Register</RouterLink>
+          <RouterLink v-if="user == null" to="/login">Login / Register</RouterLink>
           <RouterLink v-else to="/profile">Profile</RouterLink>
         </nav>
       </div>
@@ -82,8 +82,8 @@ html, body {
 
 a {
   text-decoration: none;
-  color: #ffffff;
-    font-weight: 600;
+  color: var(--text-theme-1);
+  font-size: 16px;
 }
 
 .app {
@@ -93,52 +93,59 @@ a {
 }
 
 .header {
-  background: rgba(255, 0, 89,1);
-  border-bottom: 1px solid #f70561;
+  border-bottom: 1px solid var(--text-theme-1);
   padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
+  height: 50px;
 }
 
-.header__wrapper {
+.headerwrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-.header__menu {
+.headermenu {
   cursor: pointer;
+  color: var(--text-theme-1);
+  font-size: 16px;
+}
+#headerUserID {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .main {
   flex: 1;
-  margin: 0 auto;
+  margin-left: 15%;
+  margin-right: 15%;
   max-width: 1200px;
   padding: 2rem;
   box-sizing: border-box;
 }
 
 .title-card {
-  margin-bottom: 2rem;
+  margin-bottom: 2rem;  
+  text-align: center;
 }
 
-.logo {
+.logo {  
   display: block;
   width: 90px;
   height: 80px;
-  margin-bottom: 1rem;
+  margin: auto;
 }
 
 .sidebar {
   position: fixed;
-  left: 0;
+  left: 0;  
   top: 0;
   width: 250px;
   height: 100%;
-  background-color: #eb0d4c;
+  background-color: rgba(84, 84, 84, 1);
   overflow-y: auto;
   padding: 1rem;
   z-index: 100;
@@ -162,14 +169,12 @@ a {
   background-color: #070707;
   border-radius: 4px;
 }
-.sidebar__close {
+.sidebarClose {
+  padding-bottom: 3%;
   position: absolute;
-  top: 0px;
-  right: 2px;
+  top: 20px;
+  right: 20px;
   cursor: pointer;
-  font-size: 20px;
-  font-weight: bold;
-  color:white
+  font-size: 16px;
 }
-
 </style>
