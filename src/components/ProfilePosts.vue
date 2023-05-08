@@ -67,6 +67,7 @@ async function fetch() {
                 <el-table-column prop="lsv" label="LSV" sortable/>
                 <el-table-column prop="rsv" label="RSV" sortable/>
                 <el-table-column prop="lvmass" label="LVMASS" sortable/>
+                <el-table-column prop="rvmass" label="RVMASS" sortable/>
                 <el-table-column prop="scar" label="Fibrosis / Scarring" sortable/>
             </el-table-column>
 

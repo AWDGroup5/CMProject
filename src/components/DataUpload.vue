@@ -102,6 +102,7 @@ const resv = ref("");
 const lvef = ref("");
 const rvef = ref("");
 const lvmass = ref("");
+const rvmass = ref("");
 const lsv = ref("");
 const rsv = ref("");
 const scar = ref(false);
@@ -197,6 +198,7 @@ function addData() {
         lvef: lvef.value,
         rvef: rvef.value,
         lvmass: lvmass.value,
+        rvmass: rvmass.value,
         lsv: lsv.value,
         rsv: rsv.value,
         scar: scar.value,
@@ -206,7 +208,7 @@ function addData() {
         Myectomy: Myectomy.value,
         female: sex.value,
         AgeatMRI: AgeatMRI.value,
-        diabetes: Diabetes.value,
+        diabetes: diabetes.value,
     };
 
     if (!errorUpload.value) {
@@ -359,24 +361,33 @@ function addData() {
                     </el-input>
                 </el-form-item>
             </el-col>
-
             <el-col :span="12">
-                <el-form-item label="Mutation">
-                    <el-select
-                        v-model="mutation"
-                        placeholder="Select a mutation"
-                        style="width: 260px"
+                <el-form-item label="rvmass">
+                    <el-input 
+                        type="number" 
+                        v-model="lvmass"
+                        placeholder="Right Ventricular Mass"
+                        style="width: 260px;"
                     >
-                    <el-option
-                        v-for="item in mutations"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value"
-                    />
-                    </el-select>
+                    </el-input>
                 </el-form-item>
             </el-col>
         </el-row>
+
+        <el-form-item label="Mutation">
+            <el-select
+                v-model="mutation"
+                placeholder="Select a mutation"
+                style="width: 260px"
+            >
+            <el-option
+                v-for="item in mutations"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+            />
+            </el-select>
+        </el-form-item>
 
         <el-form-item label="Fibrosis / Scarring">
             <el-checkbox 

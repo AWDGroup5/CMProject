@@ -63,15 +63,15 @@ const options = [
             label: 'MYH7',
         },
         {
-            value: 'MYBPC3',
+            value: 'MYBPC3mutation',
             label: 'MYBPC3',
         },
         {
-            value: 'TNNT2',
+            value: 'TNNT2mutation',
             label: 'TNNT2',
         },
         {
-            value: 'ACTC',
+            value: 'ACTCmutation',
             label: 'ACTC',
         },
         {
@@ -135,6 +135,8 @@ const options = [
 ]
 const option1 = ref("");
 const option2 = ref("");
+const option1Data = ref("");
+const option2Data = ref("");
 const chartData = ref("");
         
 const hcmDataRef = query(collection(firebaseFireStore,'HCMData')) //, where('uploaded', '==', 20230401)) 
@@ -145,7 +147,15 @@ function setOption1(event) {
 }
 
 function setOption2(event) {
-    option2.value = event.target.value;
+    try {
+        option2.value = event.target.value;
+        option2Data.value = dataSnap.docs.map(doc => doc.data().lvmass);
+        console.log(option2.value + option2Data)
+    }
+    catch {
+        console.log('Fail')
+    }
+    
 }
 
 const test = computed( () => {
@@ -174,7 +184,7 @@ const chartOptions = ref({
 const series = ref([
     {
         name: option2.value,
-        data: [10,20,30,40,45,46,47,55,60,66,69]
+        data: option2Data.value
     }
 ])
 
@@ -193,20 +203,14 @@ async function fetch() {
 async function fetch() {
     try {
         //const yAxis = await where(hcmDataRef, 'ledv', '==', true).get();
-
-        const series = ref([
-            {
-                name: option2.value,
-                data: [20,30,40,40,55,56,57,65,70,76,79]
-            }
-        ])
         
         if (dataSnap.empty){
             console.log('fail');
             return;
         } else {
-            const searchResults = dataSnap.docs.map(doc => doc.data());
+            const searchResults = dataSnap.docs.map(doc => doc.data().$option1);
             chartData.value = searchResults
+            console.log(searchResults)
             return searchResults
         }
 
