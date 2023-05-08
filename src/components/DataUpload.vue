@@ -92,7 +92,7 @@ const diabetesType = [
 
 ]
 const mutation = ref([]);
-const Diabetes = ref([]);
+const diabetes = ref([]);
 const sex = ref([]);
 const AgeatMRI = ref("");
 const ledv = ref("");
@@ -205,7 +205,7 @@ function addData() {
         Myectomy: Myectomy.value,
         female: sex.value,
         AgeatMRI: AgeatMRI.value,
-        Diabetes: Diabetes.value,
+        diabetes: Diabetes.value,
     };
 
     if (!errorUpload.value) {
@@ -231,7 +231,7 @@ function addData() {
 
 <template>
     <el-form label-width="150px"  @submit.prever>
-        <div style="text-align: center" >
+        <div>
             <h2>Add Data</h2>
 
         </div>
@@ -377,7 +377,7 @@ function addData() {
             </el-col>
         </el-row>
 
-        <el-form-item label="Fiborsis / Scarring">
+        <el-form-item label="Fibrosis / Scarring">
             <el-checkbox 
                 v-model="scar"
             />
@@ -423,7 +423,7 @@ function addData() {
 
         <el-form-item label="Diabetes">
             <el-select
-                v-model="Diabetes"
+                v-model="diabetes"
                 placeholder="Select an option"
                 required
                 style="width: 260px"

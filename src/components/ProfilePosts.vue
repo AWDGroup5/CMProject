@@ -5,7 +5,7 @@ import { firebaseAuthentication, collection, firebaseFireStore, query } from "..
 import { onAuthStateChanged } from 'firebase/auth';
   
 const user = ref(null)
-const uploadedData = reactive([]);
+const uploadedData = ref('');
 
 onAuthStateChanged(firebaseAuthentication, (currentUser) => {
 if (currentUser) {
@@ -25,10 +25,11 @@ async function fetch() {
             return;
         }
 
-        dataSnap.forEach(doc => {
-            uploadedData.value = (doc.id, '=>', doc.data());
-            //console.log(doc.id, '=>', doc.data().uploaded, doc.data().female);
-        })
+        const searchResults = dataSnap.docs.map(doc => doc.data());
+        uploadedData.value = searchResults
+        return searchResults
+
+        
 
     } catch (err) {
         console.log(err);
@@ -40,20 +41,66 @@ async function fetch() {
 
 <template>
 
+    <el-row>
+        <el-col :span="12">
+            <h2>Data Uploads</h2>
+        </el-col>
+
+        <el-col :span="12">
+            <el-button class="btnStandard" type="primary" @click="fetch"> Get Posts </el-button>
+        </el-col>
+    </el-row>
+
+    <el-divider />
+
     <el-col :span="24">
-        <el-table :data="uploadedData">
-            <el-table-column fixed prop="uploaded" label="Date" />
+        <el-table :data="uploadedData" highlight-current-row max-height="500">
+            <el-table-column fixed="left" prop="uploaded" label="Date" sortable/>
+
+            <el-table-column label="Heart Conditions">
+                <el-table-column prop="ledv" label="LEDV" sortable/>
+                <el-table-column prop="redv" label="REDV" sortable/>
+                <el-table-column prop="lesv" label="LESV" sortable/>
+                <el-table-column prop="resv" label="RESV" sortable/>
+                <el-table-column prop="lvef" label="LVEF" sortable/>
+                <el-table-column prop="rvef" label="RVEF" sortable/>
+                <el-table-column prop="lsv" label="LSV" sortable/>
+                <el-table-column prop="rsv" label="RSV" sortable/>
+                <el-table-column prop="lvmass" label="LVMASS" sortable/>
+                <el-table-column prop="scar" label="Fibrosis / Scarring" sortable/>
+            </el-table-column>
+
+            <el-table-column label="Mutations">
+                <el-table-column prop="MYH7" label="MYH7" sortable/>
+                <el-table-column prop="MYBPC3mutation" label="MYBPC3" sortable/>
+                <el-table-column prop="TNNT2mutation" label="TNNT2" sortable/>
+                <el-table-column prop="ACTCmutation" label="ACTC" sortable/>
+                <el-table-column prop="TPM1" label="TPM1" sortable/>
+                <el-table-column prop="LAMP2" label="LAMP2" sortable/>
+                <el-table-column prop="TNNCI" label="TNNCI" sortable/>
+                <el-table-column prop="TNNI3" label="TNNI3" sortable/>
+                <el-table-column prop="MYL2" label="MYL2" sortable/>
+                <el-table-column prop="TTN" label="TTN" sortable/>
+                
+            </el-table-column>
+            <el-table-column label="Patient Information">
+                <el-table-column prop="AgeatMRI" label="Age at MRI" sortable/>
+                <el-table-column prop="female" label="Sex" sortable/>
+                <el-table-column prop="diabetes" label="Diabetes" sortable/>
+                <el-table-column prop="ApicalHCM" label="Apical HCM" sortable/>
+                <el-table-column prop="SuddenCardiacDeath" label="Sudden Cardiac Death" sortable/>
+                <el-table-column prop="hypertension" label="Hypertension" sortable/>
+                <el-table-column prop="Myectomy" label="Myectomy" sortable/>
+                
+            </el-table-column>
             <el-table-column fixed="right" label="Actions">
                 <template #default>
-                    <el-button class="btnStandard" type="primary">Edit</el-button>
-                    <el-button class="btnStandard" type="primary">Delete</el-button>
+                    <el-button type="info" disabled>Delete</el-button>
                 </template>
             </el-table-column>
         </el-table>
-        <el-button class="btnStandard" type="primary" @click="fetch">{{ user }}</el-button>
+        
     </el-col>
-
-    <label>{{ uploadedData }}</label>
 
 </template>
 

@@ -8,7 +8,7 @@ const user = ref(null)
 
 onAuthStateChanged(firebaseAuthentication, (currentUser) => {
 if (currentUser) {
-    user.value = currentUser.uid;
+    user.value = currentUser.displayName;
 } else {
     user.value == null;
 }
@@ -35,6 +35,12 @@ if(userSnap,exists()) {
 const displayName = ref("");
 const email = ref("");
 const password = ref("");
+const phone = ref("");
+const institute = ref("");
+const address1 = ref("");
+const address2 = ref("");
+const address3 = ref("");
+const postCode = ref("")
 const confirmPassword = ref("");
 
 const errorProfile = ref("");
@@ -62,6 +68,8 @@ getAuth().updateCurrentUser(uid, {
 
 <template>
     <el-form class="register" @submit.prevent>
+
+        <h2>{{ user }}</h2>
     
         <el-divider />
 
@@ -71,46 +79,100 @@ getAuth().updateCurrentUser(uid, {
             </el-button>
         </div>
 
-        <el-form-item label="Display Name">
+        <el-form-item label="Name"
+        :rules="[
+            { required: true, message: 'Name is required'}
+        ]">
         <el-input
             type="text"
-            placeholder="Display Name"
-            required
             autocomplete="off"
             v-model="displayName"
         ></el-input>
         </el-form-item>
 
-        <el-form-item label="Email">
-            <el-input
-                type="email"
-                required
-                placeholder="Placeholder"
-                autocomplete="off"
-                v-model="email"
-            ></el-input>
+        <el-form-item label="Email"
+        :rules="[
+            { required: true, message: 'Email is required'}
+        ]">
+        <el-input
+            type="email"
+            v-model="email"
+        ></el-input>
         </el-form-item>
 
-        <el-form-item label="Password" prop="pass">
-            <el-input
-                type="password"
-                required
-                autocomplete="off"
-                show-passwod
-                v-model="password"
-            ></el-input>
-        </el-form-item>
-
-        <el-form-item label="Confirm Password" prop="pass">
+        <el-form-item label="Password" prop="pass"
+        :rules="[
+            { required: true, message: 'Password is required'}
+        ]">
         <el-input
             type="password"
-            placeholder="confirm password"
+            autocomplete="off"
+            show-password
+            v-model="password"
+        ></el-input>
+        </el-form-item>
+
+        <el-form-item label="Confirm Password" prop="pass"
+        :rules="[
+            { required: true, message: 'Confirm the password'}
+        ]">
+        <el-input
+            type="password"
             required
             autocomplete="off"
-            show-passwod
+            show-password
             v-model="confirmPassword"
         ></el-input>
         </el-form-item>
+
+        <el-divider />
+
+        <el-form-item label="Institution Affiliation"
+        :rules="[
+            { required: true, message: 'Institution Affiliation is required'}
+        ]">
+        <el-input
+            type="text"
+            v-model="institute"
+        ></el-input>
+        </el-form-item>
+
+        <el-form-item label="Address Line 1">
+        <el-input
+            type="text"
+            v-model="address1"
+        ></el-input>
+        </el-form-item>
+
+        <el-form-item label="Address Line 2">
+        <el-input
+            type="text"
+            v-model="address2"
+        ></el-input>
+        </el-form-item>
+
+        <el-form-item label="Address Line 3">
+        <el-input
+            type="text"
+            v-model="address3"
+        ></el-input>
+        </el-form-item>
+
+        <el-form-item label="Postcode">
+        <el-input
+            type="text"
+            v-model="postCode"
+        ></el-input>
+        </el-form-item>
+
+        <el-form-item label="Phone">
+        <el-input
+            type="tel"
+            v-model="phone"
+        ></el-input>
+        </el-form-item>
+
+        <el-divider />
 
         <el-form-item>
             <el-button class="btnAccount"
