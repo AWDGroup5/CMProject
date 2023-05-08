@@ -1,11 +1,6 @@
 <script setup>
 import PostListItem from "@/components/PostListItem.vue";
-import { ref, defineProps, defineEmits } from "vue";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
 
-const firebaseFirestore = getFirestore();
-const document_reference = doc(firebaseFirestore, "users", "h06n4S5PRmCQn9AuFSlj");
-const user = ref(null);
 
 defineProps({
   posts: {
@@ -17,17 +12,9 @@ defineProps({
     default: () => {},
   },
 }) 
-getDoc(document_reference).then((docSnap) => {
-  if (docSnap.exists()) {
-    console.log("Document.data:", docSnap.data());
-    user.value = docSnap.data().name;
-  } else {
-    // doc.data() will be undefined in this case
-    console.log("No such document!");
-  }
-});
 
-const emit = defineEmits(["delete-post"]);
+
+let emit = defineEmits(["delete-post"]);
 
 function deletePost(slug) {
   emit("delete-post", slug);
@@ -47,7 +34,7 @@ function deletePost(slug) {
       </div>
     </el-card>
     <PostListItem
-      v-for="post in props.posts"
+      v-for="post in posts"
       :key="post.slug"
       :slug="post.slug"
       :title="post.title"

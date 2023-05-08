@@ -1,10 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
+import { useRouter } from 'vue-router';
 import { onAuthStateChanged } from 'firebase/auth';
-import { firebaseAuthentication, firebaseFireStore, collection, timestamp, where, query } from '@/firebase/database';
-
+import { firebaseAuthentication, firebaseFireStore, collection, serverTimestamp, where, query , deleteDoc, getDocs} from '@/firebase/database';
+import { addDoc } from '@firebase/firestore';
 import HelloWorld from './components/HelloWorld.vue';
+
 
 const sidebarOpen = ref(false)
 
@@ -25,6 +27,29 @@ onAuthStateChanged(firebaseAuthentication, (currentUser) => {
 
 const toggleSidebar = () => {
   sidebarOpen.value = !sidebarOpen.value
+}
+const router = useRouter();
+
+function addPost(slug, title, description, content, tags) {
+  const post = {
+    slug: slug,
+    title: title,
+    description: description,
+    content: content,
+    tags: tags,
+    createdAt: serverTimestamp()
+  };
+  let sub_collection_reference = collection(firebaseFireStore, "users", user.value.uid, "posts");
+  addDoc(sub_collection_reference, post)
+}
+async function deletePost(slug) {
+  let sub_collection_reference = collection(firebaseFireStore, "users", user.value.uid, "posts");
+  const d = query(sub_collection_reference, where("slug", "==", slug));
+  const docSnap = await getDocs(d);
+  docSnap.forEach((doc) => {
+    console.log(doc.data())
+    deleteDoc(doc.ref);
+  });
 }
 </script>
 <template>
