@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, reactive } from "vue";
 import { collection, firebaseFireStore, where, query } from "@/firebase/database";
 import { getDocs } from "firebase/firestore";
 
@@ -49,7 +49,7 @@ const options = [
         },
         {
             value: 'scar',
-            label: 'Fiborsis / Scarring',
+            label: 'Fibrosis / Scarring',
         },
     ]
 },
@@ -163,7 +163,7 @@ async function fetch() {
 
 async function fetch() {
     try {
-        const hcmDataRef = query(collection(firebaseFireStore,'HCMData'), where('uploaded', '==', 20230401))
+        const hcmDataRef = query(collection(firebaseFireStore,'HCMData')) //, where('uploaded', '==', 20230401))
         //const yAxis = await where(hcmDataRef, 'ledv', '==', true).get();
         const dataSnap = await getDocs(hcmDataRef);
         
@@ -173,11 +173,12 @@ async function fetch() {
         }
 
         dataSnap.forEach(doc => {
-            console.log(doc.id, '=>', doc.data().uploaded);
+            //uploadedData.values = (doc.data().lesv);
+            console.log(doc.id, '=>', doc.data().lesv, doc.data().AgeatMRI);
         })
 
-    } catch {
-        console.log('failed');
+    } catch (err) {
+        console.log(err);
     }
 }
 
@@ -275,8 +276,6 @@ const xAxis = await hcmDataRef.where(option2.value, '==', true).get();
     <el-col :span="24">
         <label class="placeholder">
             PLACEHOLDER
-
-            {{ test }}
 
         </label>
     </el-col>

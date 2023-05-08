@@ -1,6 +1,23 @@
 <script setup>
+import { ref } from 'vue';
 import Data from '../components/Data.vue';
 import DataUpload from '../components/DataUpload.vue';
+import { firebaseAuthentication } from '@/firebase/database';
+import { onAuthStateChanged } from 'firebase/auth';
+
+const user = ref(null)
+
+/*
+  const userTest = await where(userTable, email, '==', user.value);
+*/
+
+onAuthStateChanged(firebaseAuthentication, (currentUser) => {
+  if (currentUser) {
+    user.value = currentUser.displayName;
+  } else {
+    user.value == null;
+  }
+});
 
 </script>
 
@@ -16,7 +33,7 @@ import DataUpload from '../components/DataUpload.vue';
     
     </Suspense>
     
-    <DataUpload />
+    <DataUpload v-if="user" />
 
 </template>
 

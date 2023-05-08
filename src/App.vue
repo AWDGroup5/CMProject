@@ -42,7 +42,7 @@ const toggleSidebar = () => {
           {{ user }}
         </div>
         <nav class="headernav">
-          <RouterLink v-if="user == null" to="/login">Login / Register</RouterLink>
+          <RouterLink v-if="!user" to="/login">Login / Register</RouterLink>
           <RouterLink v-else to="/profile">Profile</RouterLink>
         </nav>
       </div>
@@ -68,7 +68,8 @@ const toggleSidebar = () => {
        <!-- <RouterLink to="/search">Search</RouterLink>-->
         <RouterLink to="/message-board">Message Board</RouterLink>
         <RouterLink to="/data">Data</RouterLink>
-        <RouterLink v-if="!user == null" to="/logout">Logout</RouterLink>
+        <RouterLink v-if="user" to="/logout">Logout</RouterLink>
+        <RouterLink v-else to="/login">Login / Register</RouterLink>
       </nav>
     </div>
   </div>

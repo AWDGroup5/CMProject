@@ -1,9 +1,8 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import { firebaseAuthentication, createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "@/firebase/database";
+import { firebaseAuthentication, createUserWithEmailAndPassword, firebaseFireStore, sendEmailVerification } from "@/firebase/database";
 import { collection, addDoc } from "firebase/firestore";
-import { firebaseFireStore } from "../firebase/database";
 
 defineEmits(["register-clicked"])
 
