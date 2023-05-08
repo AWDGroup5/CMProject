@@ -13,7 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "apexcharts": "^3.37.3",
+    "apexcharts": "^3.40.0",
     "axios": "^1.4.0",
     "element-plus": "^2.3.3",
     "firebase": "^9.19.1",

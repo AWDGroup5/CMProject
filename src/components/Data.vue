@@ -135,7 +135,10 @@ const options = [
 ]
 const option1 = ref("");
 const option2 = ref("");
-    
+const chartData = ref("");
+        
+const hcmDataRef = query(collection(firebaseFireStore,'HCMData')) //, where('uploaded', '==', 20230401)) 
+const dataSnap = await getDocs(hcmDataRef);
 
 function setOption1(event) {
     option1.value = event.target.value;
@@ -148,6 +151,32 @@ function setOption2(event) {
 const test = computed( () => {
     return option1.value + " " + option2.value
 })
+
+const chartOptions = ref({
+    chart: {
+        type: "line",
+        id: "dataChart"
+    },
+    xaxis: {
+        categories: [1,2,3,4,5,6,10,20,30,50,100,200,300,500]
+    },
+    title: {
+        text: option1.value,
+        align: 'left',
+        offsetY: 0,
+        style: {
+            fontSize: 17,
+            fontWeight: 'bold'
+        }
+    }
+});
+
+const series = ref([
+    {
+        name: option2.value,
+        data: [10,20,30,40,45,46,47,55,60,66,69]
+    }
+])
 
 
 
@@ -163,19 +192,23 @@ async function fetch() {
 
 async function fetch() {
     try {
-        const hcmDataRef = query(collection(firebaseFireStore,'HCMData')) //, where('uploaded', '==', 20230401))
         //const yAxis = await where(hcmDataRef, 'ledv', '==', true).get();
-        const dataSnap = await getDocs(hcmDataRef);
+
+        const series = ref([
+            {
+                name: option2.value,
+                data: [20,30,40,40,55,56,57,65,70,76,79]
+            }
+        ])
         
         if (dataSnap.empty){
             console.log('fail');
             return;
+        } else {
+            const searchResults = dataSnap.docs.map(doc => doc.data());
+            chartData.value = searchResults
+            return searchResults
         }
-
-        dataSnap.forEach(doc => {
-            //uploadedData.values = (doc.data().lesv);
-            console.log(doc.id, '=>', doc.data().lesv, doc.data().AgeatMRI);
-        })
 
     } catch (err) {
         console.log(err);
@@ -267,20 +300,24 @@ const xAxis = await hcmDataRef.where(option2.value, '==', true).get();
             type="primary" 
             @click="fetch"
         >
-                Display Data
+                Chart Data
         </el-button>
     </el-form>
 
     <el-divider />
 
     <el-col :span="24">
-        <label class="placeholder">
-            PLACEHOLDER
-
-        </label>
+        <div v-if="option1 && option2" id="dataChart"> 
+            <apexchart
+                :options="chartOptions"
+                :series="series"
+                height="400"
+            ></apexchart>
+        
+            <el-divider />
+        </div>
     </el-col>
     
-    <el-divider />
 
 </template>
 

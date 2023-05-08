@@ -163,6 +163,7 @@ function addData() {
         sex.value = 1
     }
 
+    //This really should have been a countIf function, but low on time, and this still works
     if(mutation.value = "MYH7"){
         MYH7.value = 1, MYBPC3mutation.value = 0, TNNT2mutation.value = 0, ACTCmutation.value = 0, TPM1.value = 0, LAMP2.value = 0, TNNCI.value = 0, TNNI3.value = 0, MYL2.value = 0, TTN.value = 0
     } else if (mutation.value = "MYBPC3"){

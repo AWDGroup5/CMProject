@@ -186,7 +186,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  top: 25px;
+  top: 50px;
 }
 
 .sidebar nav a {
