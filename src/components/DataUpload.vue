@@ -102,7 +102,6 @@ const resv = ref("");
 const lvef = ref("");
 const rvef = ref("");
 const lvmass = ref("");
-const rvmass = ref("");
 const lsv = ref("");
 const rsv = ref("");
 const scar = ref(false);
@@ -197,7 +196,6 @@ function addData() {
         lvef: lvef.value,
         rvef: rvef.value,
         lvmass: lvmass.value,
-        rvmass: rvmass.value,
         lsv: lsv.value,
         rsv: rsv.value,
         scar: scar.value,
@@ -324,32 +322,6 @@ function addData() {
 
         <el-row>
             <el-col :span="12">
-                <el-form-item label="lvmass">
-                    <el-input 
-                        type="number" 
-                        v-model="lvmass"
-                        placeholder="Left Ventricular Mass"
-                        style="width: 260px;"
-                    >
-                    </el-input>
-                </el-form-item>
-            </el-col>
-
-            <el-col :span="12">
-                <el-form-item label="rvmass">
-                    <el-input 
-                        type="number" 
-                        v-model="rvmass"
-                        placeholder="Right Ventricular Mass"
-                        style="width: 260px;"
-                    >
-                    </el-input>
-                </el-form-item>
-            </el-col>
-        </el-row>
-
-        <el-row>
-            <el-col :span="12">
                 <el-form-item label="lsv">
                     <el-input 
                         type="number" 
@@ -374,20 +346,36 @@ function addData() {
             </el-col>
         </el-row>
 
-        <el-form-item label="Mutation">
-            <el-select
-                v-model="mutation"
-                placeholder="Select a mutation"
-                style="width: 260px"
-            >
-            <el-option
-                v-for="item in mutations"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-            />
-            </el-select>
-        </el-form-item>
+        <el-row>
+            <el-col :span="12">
+                <el-form-item label="lvmass">
+                    <el-input 
+                        type="number" 
+                        v-model="lvmass"
+                        placeholder="Left Ventricular Mass"
+                        style="width: 260px;"
+                    >
+                    </el-input>
+                </el-form-item>
+            </el-col>
+
+            <el-col :span="12">
+                <el-form-item label="Mutation">
+                    <el-select
+                        v-model="mutation"
+                        placeholder="Select a mutation"
+                        style="width: 260px"
+                    >
+                    <el-option
+                        v-for="item in mutations"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                    />
+                    </el-select>
+                </el-form-item>
+            </el-col>
+        </el-row>
 
         <el-form-item label="Fiborsis / Scarring">
             <el-checkbox 

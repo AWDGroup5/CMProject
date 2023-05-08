@@ -3,7 +3,6 @@ import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { firebaseAuthentication, createUserWithEmailAndPassword, firebaseFireStore, sendEmailVerification } from "@/firebase/database";
 import { collection, addDoc } from "firebase/firestore";
-
 defineEmits(["register-clicked"])
 
 const displayName = ref("");

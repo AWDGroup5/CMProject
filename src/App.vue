@@ -64,11 +64,10 @@ async function deletePost(slug) {
 
         <div id="headerUserID">
 
-          {{ user }}
         </div>
         <nav class="headernav">
           <RouterLink v-if="!user" to="/login">Login / Register</RouterLink>
-          <RouterLink v-else to="/profile">Profile</RouterLink>
+          <RouterLink v-else to="/profile">Profile ({{ user }})</RouterLink>
         </nav>
       </div>
     </header>
