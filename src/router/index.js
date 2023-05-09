@@ -11,6 +11,7 @@ import Data from '../views/DataView.vue';
 import Profile from '../views/ProfileView.vue';
 import Forgotten from '../views/ForgottenView.vue';
 import DBLinks from '../views/DBLinksView.vue'
+import ApiTest from '../views/ApiTest.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -88,6 +89,11 @@ const router = createRouter({
     {
       path: "/:catchAll(.*)",
       redirect: "/",
+    },
+    {
+      path: "/api-test",
+      name: "ApiTest",
+      component: ApiTest,
     }
   ]
 })

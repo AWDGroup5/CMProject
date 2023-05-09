@@ -10,15 +10,16 @@ function getGenesFromHpo(hpoId) {
     const genes_url = `${hpo_base_url}/genes`;
 
     try {
-      let genes_data = await fetch(genes_url);
+      let genes_data = await fetch(genes_url);;
       if (!genes_data.ok) {
         throw Error("Unable to get data from Human Phenotype Ontology");
       }
 
-      genes.value = await genes_data.json();
+      genes = await genes_data.json();
+      console.log(genes);
     } catch (genes_error) {
       error.value = genes_error.message;
-      console.log(error.value);
+      // console.log(error.value);
     }
   }
 
