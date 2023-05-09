@@ -196,9 +196,20 @@ getAuth().updateCurrentUser(uid, {
         ></el-input>
         </el-form-item>
 
-        <el-divider />
 
-        <el-form-item>
+        <el-form-item  v-if="
+            displayName || 
+            institute || 
+            email || 
+            phone || 
+            password || 
+            address1 || 
+            address2 || 
+            address3 || 
+            postCode">
+
+            <el-divider />
+
             <el-button class="btnAccount"
                 type="primary"
                 @click="update"

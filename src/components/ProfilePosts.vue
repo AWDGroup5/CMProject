@@ -59,15 +59,9 @@ async function deleteData(DataID) {
 
 <template>
 
-    <el-row>
-        <el-col v-if="uploadedData" :span="12">
-            <h2>Data Uploads</h2>
-        </el-col>
+    <h2 v-if="uploadedData">Data Uploads</h2>
 
-        <el-col :span="12">
-            <el-button v-if="!uploadedData" class="btnStandard" type="primary" @click="fetch"> Get Uploads </el-button>
-        </el-col>
-    </el-row>
+    <el-button v-if="!uploadedData" class="btnStandard" type="primary" @click="fetch"> Get Uploads </el-button>
 
     <el-divider />
 

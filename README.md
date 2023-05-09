@@ -51,3 +51,9 @@ The lack of formality with these reviews can be seen throughout the app, in part
 [UCD Early Draft](https://app.diagrams.net/#Wb!DdBy_HPlfUitmzF4m8wZQLwzpARcGodPrUlP2QjOvYArcTwaRGFiTrx2rWvp3tJF%2F01YSQAGLH2YCOQDPEZFNH2WFKEFLZ7TYBT) 
 [Trello Board](https://trello.com/b/5Nh6brWs/cardiomyopathy-project)
 [RSS Account](https://rss.app/feed/1mDqPNunGm48692G/embed?tab=imageboard&customize=imageboard)
+
+## Controls that mostly work, but needed a bit more time
+* Delete data -- unable to identify DataID of row that has been deleted
+* Update profile -- unable to pull information, on page load, to prepopulate fields
+* Graph data -- unable to limit data sets to individual columns
+* Send email confirming data submitted -- unable to find reference on how to send emails from firestore
