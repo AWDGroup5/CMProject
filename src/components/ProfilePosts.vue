@@ -27,7 +27,6 @@ async function fetch() {
 
         const searchResults = dataSnap.docs.map(doc => doc.data());
         uploadedData.value = searchResults
-        console.log(uploadedData)
         return searchResults
 
         

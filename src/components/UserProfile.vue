@@ -1,36 +1,23 @@
 <script setup>
 import { ref, watch } from "vue";
-import { firebaseFireStore, doc, getDoc } from "@/firebase/database";
-import { firebaseAuthentication, collection, where, query } from '@/firebase/database';
+import { firebaseFireStore, doc, firebaseAuthentication, collection, where, query } from "@/firebase/database";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getDoc, updateDoc } from "firebase/firestore";
 
-const user = ref(null)
+const userEmail = ref(null)
+const userName = ref(null)
+const userData = ref('')
+
 
 onAuthStateChanged(firebaseAuthentication, (currentUser) => {
 if (currentUser) {
-    user.value = currentUser.displayName;
+    userEmail.value = currentUser.email;
+    userName.value = currentUser.displayName
 } else {
-    user.value == null;
+    userEmail.value == null;
+    userName.value == null;
 }
 });
-
-/*
-defineProps ({
-    user: {
-        type: Object,
-        default: () => {}
-    }
-})
-const userRef = doc(firebaseFireStore,"users", "A6sLxD93MyfT54tcgyeU")
-const userSnap = await getDoc(userRef)
-
-if(userSnap,exists()) {
-    user.value = userSnap.data().displayName;
-} else {
-    user.value == null;
-    console.log(firebaseError)
-}
-*/
 
 const displayName = ref("");
 const email = ref("");
@@ -57,19 +44,140 @@ watch(confirmPassword, () => {
   }
 })
 
-/*
-getAuth().updateCurrentUser(uid, {
-    displayName: displayName.value,
-    email: email.value,
-    password: password.value
-})
-*/
+async function update() {
+    //At least you know that this code wasn't stolen -- no one, in their right mind, would use this code
+    const userDataRef = query(collection(firebaseFireStore, 'users'), where('email', '==', userEmail.value))
+    const userSnap = await getDoc(userDataRef);
+
+    //displayName
+    const dbDisplayName = String(userSnap.docs.map(doc => doc.data().displayName))
+    if(displayName.value !== "") {
+        if(displayName.value != dbDisplayName) {
+            displayName.value = displayName.value
+        } else {
+            displayName.value = dbDisplayName
+        }
+    } else {
+        displayName.value = dbDisplayName
+    }
+
+    //email
+    const dbEmail = String(userSnap.docs.map(doc => doc.data().email))
+    if(email.value !== "") {
+        if(email.value != dbEmail) {
+            email.value = email.value
+        } else {
+            email.value = dbEmail
+        }
+    } else {
+        email.value = dbEmail
+    }
+
+    //phone
+    const dbPhone = String(userSnap.docs.map(doc => doc.data().phone))
+    if(phone.value !== "") {
+        if(phone.value != dbPhone) {
+            phone.value = phone.value
+        } else {
+            phone.value = dbPhone
+        }
+    } else {
+        phone.value = dbPhone
+    }
+
+    //institute
+    const dbInstitute = String(userSnap.docs.map(doc => doc.data().institute))
+    if(institute.value !== "") {
+        if(institute.value != dbInstitute) {
+            institute.value = institute.value
+        } else {
+            institute.value = dbInstitute
+        }
+    } else {
+        institute.value = dbInstitute
+    }
+
+    //address1
+    const dbAddress1 = String(userSnap.docs.map(doc => doc.data().address1))
+    if(address1.value !== "") {
+        if(address1.value != dbAddress1) {
+            address1.value = address1.value
+        } else {
+            address1.value = dbAddress1
+        }
+    } else {
+        address1.value = dbAddress1
+    }
+    
+    //address2
+    const dbAddress2 = String(userSnap.docs.map(doc => doc.data().address2))
+    if(address2.value !== "") {
+        if(address2.value != dbAddress2) {
+            address2.value = address2.value
+        } else {
+            address2.value = dbAddress2
+        }
+    } else {
+        address2.value = dbAddress2
+    }
+
+    //address3
+    const dbAddress3 = String(userSnap.docs.map(doc => doc.data().address3))
+    if(address3.value !== "") {
+        if(address3.value != dbAddress3) {
+            address3.value = address3.value
+        } else {
+            address3.value = dbAddress3
+        }
+    } else {
+        address3.value = dbAddress3
+    }
+
+    //postCode
+    const dbPostCode = String(userSnap.docs.map(doc => doc.data().postCode))
+    if(postCode.value !== "") {
+        if(postCode.value != dbPostCode) {
+            postCode.value = postCode.value
+        } else {
+            postCode.value = dbPostCode
+        }
+    } else {
+        postCode.value = dbPostCode
+    }
+
+
+    const userInfo = {
+        displayName: displayName.value,
+        email: email.value,
+        phone: phone.value,
+        institute: institute.value,
+        address1: address1.value,
+        address2: address2.value,
+        address3: address3.value,
+        postCode: postCode.value,
+    }
+
+    if(!errorProfile.value) {
+        updateDoc(userDataRef, userInfo)
+            .then(() => {
+                console.log(displayName.value +": User has been successfully updated");
+                router.push("/profile")
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        .catch((error) => {
+            errorProfile.value = error.message;
+        })
+    }
+
+}
 </script>
 
 <template>
     <el-form class="register" @submit.prevent>
 
-        <h2>{{ user }}</h2>
+        <h2>{{ userName }}</h2>
     
         <el-divider />
 

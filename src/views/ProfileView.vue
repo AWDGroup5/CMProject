@@ -1,45 +1,46 @@
 <script setup>
 import Profile from '../components/UserProfile.vue'
 import ProfilePosts from '../components/ProfilePosts.vue'
-import { reactive } from 'vue'
-import { where, getDocs } from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
-import { firebaseAuthentication, collection, firebaseFireStore, query } from '@/firebase/database';
-
-const userInfo = reactive([
-    {
-        displayName: "",
-        email: "",
-        phone: "",
-        institute: "",
-        address1: "",
-        address2: "",
-        address3: "",
-        postCode: "",
-    }
-])
 
 /*
-  const userTest = await where(userTable, email, '==', user.value);
-*/
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { onAuthStateChanged } from 'firebase/auth';
+import { firebaseAuthentication, firebaseFireStore } from "../firebase/database";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
+
+const user = ref(null)
 
 onAuthStateChanged(firebaseAuthentication, (currentUser) => {
-  if (currentUser) {
-    userInfo.displayName = currentUser.displayName;
-    userInfo.email = currentUser.email;
+if (currentUser) {
+    user.value = currentUser.email;
+    
+    let userDataRef = query(collection(firebaseFireStore, 'users'), where('email', '==', user.value))
 
-    /*
-    async function fetch() {
-    const userDataRef = query(collection(firebaseFireStore, 'users'), where('email', '==', userInfo.email))
-    const userSnap = await getDocs()
-    }
-    */
+    onSnapshot(userDataRef, (snapShot) => {
+        const snapData = {};
 
-  } else {
-    userInfo == null;
-  }
-});
+        snapShot.forEach((doc) => {
+            snapData.push({
+                displayName: doc.data().displayName,
+                email: doc.data().email,
+                phone: doc.data().phone,
+                institute: doc.data().institute,
+                address1: doc.data().address1,
+                address2: doc.data().address2,
+                address3: doc.data().address3,
+                postCode: doc.data().postCode
+            });
+        });
 
+        userData.value = snapData;
+    })
+} else {
+    user.value == null;
+}
+
+
+});*/
 
 </script>
 

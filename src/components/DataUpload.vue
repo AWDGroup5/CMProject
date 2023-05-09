@@ -4,9 +4,10 @@ import { useRouter } from "vue-router";
 import { onAuthStateChanged } from 'firebase/auth';
 import { firebaseAuthentication, firebaseFireStore, timestamp } from "../firebase/database";
 import { collection, addDoc, getDocs, orderBy, query, limit } from "firebase/firestore";
-  
+ 
 const user = ref(null)
 const errorUpload = ref("");
+
 
 onAuthStateChanged(firebaseAuthentication, (currentUser) => {
 if (currentUser) {

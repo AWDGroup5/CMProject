@@ -5,15 +5,7 @@
   <main>
 
     <el-row>
-      <el-col :span="12">
-        <label class="placeholder">
-            PLACEHOLDER <br>
-            RSS FEED
-
-        </label>
-      </el-col>
-
-      <el-col :span="12">
+      <el-col :span="24">
         <label class="placeholder">
             PLACEHOLDER <br>
             Latest Internal Posts
@@ -34,7 +26,7 @@
   text-align: center;
   display: block;
   width: 100%;
-  height: 300px;
+  height: 500px;
   float: left;
 }
 </style>
