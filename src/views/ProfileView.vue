@@ -1,6 +1,23 @@
 <script setup>
 import Profile from '../components/UserProfile.vue'
 import ProfilePosts from '../components/ProfilePosts.vue'
+import { onAuthStateChanged } from 'firebase/auth';
+import { firebaseAuthentication } from '@/firebase/database';
+
+const user = ref(null)
+
+/*
+  const userTest = await where(userTable, email, '==', user.value);
+*/
+
+onAuthStateChanged(firebaseAuthentication, (currentUser) => {
+  if (currentUser) {
+    user.value = currentUser;
+  } else {
+    user.value == null;
+  }
+});
+
 
 </script>
 

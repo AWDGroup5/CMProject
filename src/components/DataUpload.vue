@@ -2,8 +2,8 @@
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { onAuthStateChanged } from 'firebase/auth';
-import { firebaseAuthentication, firebaseFireStore } from "../firebase/database";
-import { collection, addDoc } from "firebase/firestore";
+import { firebaseAuthentication, firebaseFireStore, timestamp } from "../firebase/database";
+import { collection, addDoc, getDocs, orderBy, query, limit } from "firebase/firestore";
   
 const user = ref(null)
 const errorUpload = ref("");
@@ -132,7 +132,14 @@ const dataRef = collection(firebaseFireStore, 'HCMData');
 
 const router = useRouter();
 
-function addData() {
+async function addData() {
+
+    const q = query(dataRef, orderBy('DataID', 'desc'), limit(1))
+    const dataSnap = await getDocs(q)
+    const maxRecord = dataSnap.docs.map(doc => doc.data().DataID)
+
+    const newMaxRecord = parseInt(maxRecord) + 1
+
 
     if(scar.value = false){
         scar.value = 0
@@ -186,29 +193,28 @@ function addData() {
     } else {
         MYH7.value = 0, MYBPC3mutation.value = 0, TNNT2mutation.value = 0, ACTCmutation.value = 0, TPM1.value = 0, LAMP2.value = 0, TNNCI.value = 0, TNNI3.value = 0, MYL2.value = 0, TTN.value = 1
     }
-
-
     const dataInfo = {
-        uploaded: uploadDate.value,
+        uploaded: parseInt(uploadDate.value),
         userID: user.value,
-        ledv: ledv.value,
-        redv: redv.value,
-        lesv: lesv.value,
-        resv: resv.value,
-        lvef: lvef.value,
-        rvef: rvef.value,
-        lvmass: lvmass.value,
-        rvmass: rvmass.value,
-        lsv: lsv.value,
-        rsv: rsv.value,
+        ledv: parseInt(ledv.value),
+        redv: parseInt(redv.value),
+        lesv: parseInt(lesv.value),
+        resv: parseInt(resv.value),
+        lvef: parseInt(lvef.value),
+        rvef: parseInt(rvef.value),
+        lvmass: parseInt(lvmass.value),
+        rvmass: parseInt(rvmass.value),
+        lsv: parseInt(lsv.value),
+        rsv: parseInt(rsv.value),
         scar: scar.value,
         ApicalHCM: ApicalHCM.value,
         SuddenCardiacDeath: SuddenCardiacDeath.value,
         hypertension: hypertension.value,
         Myectomy: Myectomy.value,
         female: sex.value,
-        AgeatMRI: AgeatMRI.value,
+        AgeatMRI: parseInt(AgeatMRI.value),
         diabetes: diabetes.value,
+        DataID: newMaxRecord
     };
 
     if (!errorUpload.value) {
@@ -228,11 +234,13 @@ function addData() {
         }
         )
     }
+
 }
 
 </script>
 
 <template>
+
     <el-form label-width="150px"  @submit.prever>
         <div>
             <h2>Add Data</h2>
@@ -365,7 +373,7 @@ function addData() {
                 <el-form-item label="rvmass">
                     <el-input 
                         type="number" 
-                        v-model="lvmass"
+                        v-model="rvmass"
                         placeholder="Right Ventricular Mass"
                         style="width: 260px;"
                     >

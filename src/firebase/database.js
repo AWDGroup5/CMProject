@@ -9,10 +9,10 @@ import {
 import { 
   getFirestore, serverTimestamp, 
   collection, onSnapshot, 
-  query, where, 
+  query, where, limit,
   deleteDoc, getDocs, 
   setDoc, doc, 
-  addDoc, getDoc 
+  addDoc, getDoc, orderBy 
 } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -39,5 +39,6 @@ export {
   updateProfile, firebaseFireStore, timestamp, 
   collection, onSnapshot, serverTimestamp, 
   query, where, deleteDoc, getDocs, setDoc, doc, 
-  getDoc, sendPasswordResetEmail, sendEmailVerification, addDoc
+  getDoc, sendPasswordResetEmail, sendEmailVerification, addDoc,
+  orderBy, limit
 };

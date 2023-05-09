@@ -45,3 +45,9 @@ The lack of formality with these reviews can be seen throughout the app, in part
 * Code, in places, does not work. This was particularly apparent during the building of the SignIn / SignUp components, where constant reworks were required, before the whole system was eventually just rebuilt. However, as the deadline grew closer, and this kind of collaboration was no longer as viable, some functionality of the app were just left broken. 
     * While a code review may not have directly assisted with this point, it may have altered the way that we worked. Regular, comprehensive code reviews may have assisted with ensuring that code remained uniform across the app, and ensure a similar style was consistently used. Having a consistent style may have made collaboration easier, since all devs should then have been working in a similar manner. Regrettably, this did not happen
 * Code is not uniform, depending on who is building which section of the app
+
+## Links
+
+[UCD Early Draft](https://app.diagrams.net/#Wb!DdBy_HPlfUitmzF4m8wZQLwzpARcGodPrUlP2QjOvYArcTwaRGFiTrx2rWvp3tJF%2F01YSQAGLH2YCOQDPEZFNH2WFKEFLZ7TYBT) 
+[Trello Board](https://trello.com/b/5Nh6brWs/cardiomyopathy-project)
+[RSS Account](https://rss.app/feed/1mDqPNunGm48692G/embed?tab=imageboard&customize=imageboard)

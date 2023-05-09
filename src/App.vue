@@ -86,15 +86,16 @@ async function deletePost(slug) {
     <div class="nav-bar"></div>
     <div class="sidebar" v-show="sidebarOpen" :class="{ show: sidebarOpen }">
   <div class="sidebarClose" @click="toggleSidebar">Close</div>
-  <nav>
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/news">News</RouterLink>
+  <nav >
+    <RouterLink to="/" @click="toggleSidebar">Home</RouterLink>
+    <RouterLink to="/news" @click="toggleSidebar">News</RouterLink>
     <!-- <RouterLink to="/search">Search</RouterLink>-->
-    <RouterLink to="/message-board">Message Board</RouterLink>
-    <RouterLink to="/data">Data</RouterLink>
-    <RouterLink v-if="user" to="/logout">Logout</RouterLink>
-    <RouterLink v-else to="/login">Login / Register</RouterLink>
+    <RouterLink to="/message-board" @click="toggleSidebar">Message Board</RouterLink>
+    <RouterLink to="/data" @click="toggleSidebar">Data</RouterLink>
     <a href="https://stummuac-my.sharepoint.com/:w:/g/personal/20022699_stu_mmu_ac_uk/ER1BWdrp-qFCoBQZ86Ie-RQBHvf1_gRnBIvqcIPes2re9w?e=QALcwW" target="_blank">How-to Guide</a>
+  
+    <RouterLink v-if="user" to="/logout" @click="toggleSidebar">Logout</RouterLink>
+    <RouterLink v-else to="/login" @click="toggleSidebar">Login / Register</RouterLink>
   </nav>
 </div>
 

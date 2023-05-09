@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive, computed } from 'vue';
-import { where, getDocs } from 'firebase/firestore';
+import { where, getDocs, deleteDoc } from 'firebase/firestore';
 import { firebaseAuthentication, collection, firebaseFireStore, query } from "../firebase/database";
 import { onAuthStateChanged } from 'firebase/auth';
   
@@ -27,9 +27,27 @@ async function fetch() {
 
         const searchResults = dataSnap.docs.map(doc => doc.data());
         uploadedData.value = searchResults
+        console.log(uploadedData)
         return searchResults
 
         
+
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function deleteData(DataID) {
+    try {
+        const hcmDataRef = query(collection(firebaseFireStore,'HCMData'), where('DataID', '==', DataID))
+        const dataSnap = await getDocs(hcmDataRef);
+
+        dataSnap.forEach((doc) => {
+            deleteDoc(doc.ref);
+        })
+
+        fetch()
+
 
     } catch (err) {
         console.log(err);
@@ -42,19 +60,20 @@ async function fetch() {
 <template>
 
     <el-row>
-        <el-col :span="12">
+        <el-col v-if="uploadedData" :span="12">
             <h2>Data Uploads</h2>
         </el-col>
 
         <el-col :span="12">
-            <el-button class="btnStandard" type="primary" @click="fetch"> Get Posts </el-button>
+            <el-button v-if="!uploadedData" class="btnStandard" type="primary" @click="fetch"> Get Uploads </el-button>
         </el-col>
     </el-row>
 
     <el-divider />
 
-    <el-col :span="24">
+    <el-col v-if="uploadedData" :span="24">
         <el-table :data="uploadedData" highlight-current-row max-height="500">
+
             <el-table-column fixed="left" prop="uploaded" label="Date" sortable/>
 
             <el-table-column label="Heart Conditions">
@@ -96,7 +115,7 @@ async function fetch() {
             </el-table-column>
             <el-table-column fixed="right" label="Actions">
                 <template #default>
-                    <el-button type="info" disabled>Delete</el-button>
+                    <el-button type="danger" disabled>Delete</el-button>
                 </template>
             </el-table-column>
         </el-table>

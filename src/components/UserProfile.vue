@@ -78,71 +78,102 @@ getAuth().updateCurrentUser(uid, {
                 {{ errorProfile }}
             </el-button>
         </div>
+        
+        <el-row>
+            <el-col :span="12">
+                <el-form-item label="Name"
+                :rules="[
+                    { required: true, message: 'Name is required'}
+                ]">
+                    <el-input
+                        type="text"
+                        autocomplete="off"
+                        v-model="displayName"
+                    ></el-input>
+                </el-form-item>
+                
+            </el-col>
+            <el-col :span="12">
 
-        <el-form-item label="Name"
-        :rules="[
-            { required: true, message: 'Name is required'}
-        ]">
-        <el-input
-            type="text"
-            autocomplete="off"
-            v-model="displayName"
-        ></el-input>
-        </el-form-item>
+                <el-form-item label="Institution Affiliation"
+                :rules="[
+                    { required: true, message: 'Institution Affiliation is required'}
+                ]">
+                <el-input
+                    type="text"
+                    v-model="institute"
+                ></el-input>
+                </el-form-item>
+            
+            </el-col>
+        </el-row>
+        
+        <el-row>
+            <el-col :span="12">
+                <el-form-item label="Email"
+                :rules="[
+                    { required: true, message: 'Email is required'}
+                ]">
+                    <el-input
+                        type="email"
+                        v-model="email"
+                    ></el-input>
+                </el-form-item>
+            
+            </el-col>
+            <el-col :span="12">
 
-        <el-form-item label="Email"
-        :rules="[
-            { required: true, message: 'Email is required'}
-        ]">
-        <el-input
-            type="email"
-            v-model="email"
-        ></el-input>
-        </el-form-item>
-
-        <el-form-item label="Password" prop="pass"
-        :rules="[
-            { required: true, message: 'Password is required'}
-        ]">
-        <el-input
-            type="password"
-            autocomplete="off"
-            show-password
-            v-model="password"
-        ></el-input>
-        </el-form-item>
-
-        <el-form-item label="Confirm Password" prop="pass"
-        :rules="[
-            { required: true, message: 'Confirm the password'}
-        ]">
-        <el-input
-            type="password"
-            required
-            autocomplete="off"
-            show-password
-            v-model="confirmPassword"
-        ></el-input>
-        </el-form-item>
+                <el-form-item label="Phone">
+                    <el-input
+                        type="tel"
+                        v-model="phone"
+                    ></el-input>
+                </el-form-item>
+            
+            </el-col>
+        </el-row>
+        
+        <el-row>
+            <el-col :span="12">
+                <el-form-item label="Password" prop="pass"
+                :rules="[
+                    { required: true, message: 'Password is required'}
+                ]">
+                    <el-input
+                        type="password"
+                        autocomplete="off"
+                        show-password
+                        v-model="password"
+                    ></el-input>
+                </el-form-item>
+            
+            </el-col>
+            <el-col :span="12">
+                <el-form-item v-if="password" label="Confirm Password" prop="pass"
+                :rules="[
+                    { required: true, message: 'Confirm the password'}
+                ]">
+                    <el-input
+                        type="password"
+                        required
+                        autocomplete="off"
+                        show-password
+                        v-model="confirmPassword"
+                    ></el-input>
+                </el-form-item>
+            
+            </el-col>
+        </el-row>
 
         <el-divider />
 
-        <el-form-item label="Institution Affiliation"
-        :rules="[
-            { required: true, message: 'Institution Affiliation is required'}
-        ]">
-        <el-input
-            type="text"
-            v-model="institute"
-        ></el-input>
+        <el-form-item label="Address Line 1">
+            <el-input
+                type="text"
+                v-model="address1"
+            ></el-input>
         </el-form-item>
 
-        <el-form-item label="Address Line 1">
-        <el-input
-            type="text"
-            v-model="address1"
-        ></el-input>
-        </el-form-item>
 
         <el-form-item label="Address Line 2">
         <el-input
@@ -162,13 +193,6 @@ getAuth().updateCurrentUser(uid, {
         <el-input
             type="text"
             v-model="postCode"
-        ></el-input>
-        </el-form-item>
-
-        <el-form-item label="Phone">
-        <el-input
-            type="tel"
-            v-model="phone"
         ></el-input>
         </el-form-item>
 
