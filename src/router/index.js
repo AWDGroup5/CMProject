@@ -10,6 +10,7 @@ import Register from '../views/RegisterView.vue';
 import Data from '../views/DataView.vue';
 import Profile from '../views/ProfileView.vue';
 import Forgotten from '../views/ForgottenView.vue';
+import DBLinks from '../views/DBLinksView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -78,6 +79,12 @@ const router = createRouter({
       name: "Profile",
       component: Profile,
     },
+    {
+      path: "/DBLinks",
+      name: "DBLinks",
+      component: DBLinks,
+    },
+    
     {
       path: "/:catchAll(.*)",
       redirect: "/",
