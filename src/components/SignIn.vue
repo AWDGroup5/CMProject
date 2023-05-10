@@ -20,9 +20,10 @@ function login() {
   signInWithEmailAndPassword( firebaseAuthentication, info.email, info.password)
     .then(
       () => {
-        // const user = userCredential.user;
+        //const user = UserCredential.user;
         router.push("/data");
         // console.log("user = ", user)
+        console.log("login success.")
         // router.push({ name: 'PostList', params: { user: user} });
       },
       (error) => {
