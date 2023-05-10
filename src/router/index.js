@@ -10,7 +10,7 @@ import Register from '../views/RegisterView.vue';
 import Data from '../views/DataView.vue';
 import Profile from '../views/ProfileView.vue';
 import Forgotten from '../views/ForgottenView.vue';
-import DBLinks from '../views/DBLinksView.vue'
+
 import ApiTest from '../views/ApiTest.vue'
 
 const router = createRouter({
@@ -80,11 +80,7 @@ const router = createRouter({
       name: "Profile",
       component: Profile,
     },
-    {
-      path: "/DBLinks",
-      name: "DBLinks",
-      component: DBLinks,
-    },
+   
     
     {
       path: "/:catchAll(.*)",
