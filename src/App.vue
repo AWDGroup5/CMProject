@@ -90,7 +90,7 @@ async function deletePost(slug) {
     <RouterLink to="/" @click="toggleSidebar">Home</RouterLink>
     <RouterLink to="/news" @click="toggleSidebar">News</RouterLink>
     <!-- <RouterLink to="/search">Search</RouterLink>-->
-    <RouterLink to="/message-board" @click="toggleSidebar">Message Board</RouterLink>
+    <!--<RouterLink to="/message-board" @click="toggleSidebar">Message Board</RouterLink>-->
     <RouterLink to="/data" @click="toggleSidebar">Data</RouterLink>
     <a href="https://stummuac-my.sharepoint.com/:w:/g/personal/20022699_stu_mmu_ac_uk/ER1BWdrp-qFCoBQZ86Ie-RQBHvf1_gRnBIvqcIPes2re9w?e=QALcwW" target="_blank">How-to Guide</a>
   

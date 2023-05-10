@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import Search from'../views/SearchView.vue';
-import MessageBoard from '../Views/MessageBoardView.vue';
+//import MessageBoard from '../Views/MessageBoardView.vue';
 import PostList from '../components/PostList.vue';
 import SinglePost from '../components/SinglePost.vue';
 import Login from '../views/LoginScreen.vue';
@@ -32,11 +32,11 @@ const router = createRouter({
       name: 'Search',
       component: Search
     },
-    {
+    /*{
       path: '/message-board',
       name: 'Message Board',
       component: MessageBoard
-    },
+    },*/
     {
       path: "/:postID",
       name: "SinglePost",
