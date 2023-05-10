@@ -1,21 +1,19 @@
 <script setup>
 import { ref, watch } from "vue";
 import { firebaseFireStore, doc, firebaseAuthentication, collection, where, query } from "@/firebase/database";
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, updateProfile } from 'firebase/auth';
 import { getDoc, updateDoc } from "firebase/firestore";
 
-const userEmail = ref(null)
-const userName = ref(null)
+const user = ref(null)
 const userData = ref('')
+const auth = getAuth();
 
 
 onAuthStateChanged(firebaseAuthentication, (currentUser) => {
 if (currentUser) {
-    userEmail.value = currentUser.email;
-    userName.value = currentUser.displayName
+    user.value = currentUser.email;
 } else {
-    userEmail.value == null;
-    userName.value == null;
+    user.value == null;
 }
 });
 
@@ -45,9 +43,13 @@ watch(confirmPassword, () => {
 })
 
 async function update() {
-    //At least you know that this code wasn't stolen -- no one, in their right mind, would use this code
-    const userDataRef = query(collection(firebaseFireStore, 'users'), where('email', '==', userEmail.value))
+    // At least you know that this code wasn't stolen -- no one, in their right mind, would use this code
+    const userDataRef = query(collection(firebaseFireStore, 'users'), where('email', '==', user.value))
     const userSnap = await getDoc(userDataRef);
+
+    // Get fields from database, then compare with fields in app. If the app field is blank, 
+    // use the database as the value. If the app value is different to the db value, use the
+    // app value. Else use the db value. This is repeated for all fields
 
     //displayName
     const dbDisplayName = String(userSnap.docs.map(doc => doc.data().displayName))
@@ -158,10 +160,27 @@ async function update() {
     }
 
     if(!errorProfile.value) {
+        // update user table
         updateDoc(userDataRef, userInfo)
             .then(() => {
                 console.log(displayName.value +": User has been successfully updated");
                 router.push("/profile")
+            })
+
+            // update firebase auth
+            .then(() => {
+                if(password.value !== "") {
+                    updateProfile(currentUser, {
+                        displayName: displayName.value,
+                        email: email.value,
+                        password: password.value
+                    })
+                } else {
+                    updateProfile(currentUser, {
+                        displayName: displayName.value,
+                        email: email.value
+                    })
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -177,7 +196,7 @@ async function update() {
 <template>
     <el-form class="register" @submit.prevent>
 
-        <h2>{{ userName }}</h2>
+        <h2>{{ user }}</h2>
     
         <el-divider />
 
