@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import Search from'../views/SearchView.vue';
 //import MessageBoard from '../Views/MessageBoardView.vue';
 import PostList from '../components/PostList.vue';
 import SinglePost from '../components/SinglePost.vue';
@@ -26,11 +25,6 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/NewsView.vue')
-    },
-    {
-      path: '/search',
-      name: 'Search',
-      component: Search
     },
     /*{
       path: '/message-board',
